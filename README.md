@@ -42,7 +42,7 @@ Required/Stretch Goals-
 
 # Required
 
-Gesture on cell (left or right)
+Gesture on cell (left or right)  
 Algorithm(artists, music genre, and songs)
 Matchmaking View
 Login View
