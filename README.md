@@ -43,12 +43,18 @@ Required/Stretch Goals-
 Required
 
 Gesture on cell (left or right)
-Algorithm
--artists, music genre, and songs
+Algorithm(artists, music genre, and songs)
+Matchmaking View
+Login View
+Profile View
+
+
 
 Strech
 Other variables in algorithm (bpm, friends music taste, dance ability) 
 Messaging(details View)
+Details View
 
+Information on the API - https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-top-artists-and-tracks
 
 
