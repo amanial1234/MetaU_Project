@@ -19,7 +19,7 @@ WireFrame +TableViews -
 
 
 
-Description-
+# Description
 
 My WireFrame has a few notable ViewControllers. First being the LoginView which will be where the user will sign into their Spotify account. This will automatically send the user to the next ViewController, the ProfileView. This is where they are able to edit there Profile. Add a Bio, send links to their playlists and add profile images. We then can use the TabBar to access the MatchmakingView which will have all the potential matches for the users. The potential matches will be placed in descending order where the most likely match will be the top cell. The order is determined by an in depth algorithm that finds best suitable depending on different variables such as genre, artists, albums,and songs the user listens to. There will be cells that hold the matches info such as: name, profile image, favorite song, favorite artist, and favorite genre. The user will then be able to use a gesture of swiping left or right on the cell to accept the match or decline. The user can also click the cell to open a Details View which will link  them to the matches profile where they can see more information about the match, such as: a bio, their social media, etc. The last view on the Tab Bar is the Messaging View, this is where users can message other matches and see previous conversations. 
 
@@ -40,7 +40,7 @@ DetailMessaging View Controller
 
 Required/Stretch Goals-
 
-Required
+# Required
 
 Gesture on cell (left or right)
 Algorithm(artists, music genre, and songs)
@@ -50,7 +50,7 @@ Profile View
 
 
 
-Strech
+# Stretch
 Other variables in algorithm (bpm, friends music taste, dance ability) 
 Messaging(details View)
 Details View
