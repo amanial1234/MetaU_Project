@@ -30,12 +30,12 @@ My WireFrame has a few notable ViewControllers. First being the LoginView which 
 Red is Views that are required and are core features of my app.
 White is View that will be stretched or still needs to be fully developed.
 
-Login to Spotify View
-Matchmaking View
-Details View
-Profile View
-Messaging View
-DetailMessaging View Controller
+* Login to Spotify View
+* Matchmaking View
+* Details View
+* Profile View
+* Messaging View
+* DetailMessaging View Controller
 
 
 Required/Stretch Goals-
