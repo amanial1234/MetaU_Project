@@ -47,7 +47,7 @@ This app is designed to be a matchmaking app for individuals with similar music 
 * MatchMaking Screen.
    * MatchmakingView which will have all the potential matches for the users. The potential matches will be placed in descending order where the most likely match will be the top cell. The order is determined by an in depth algorithm that finds best suitable depending on different variables such as genre, artists, albums,and songs the user listens to. There will be cells that hold the matches info such as: name, profile image, favorite song, favorite artist, and favorite genre. The user will then be able to use a gesture of swiping left or right on the cell to accept the match or decline.listening and interacting with others.
 
-####Optional
+#### Optional
 * Messaging Screen - Chat for users to communicate (direct 1-on-1)
    * Upon selecting music choice users matched and message screen opens
 
