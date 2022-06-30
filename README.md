@@ -69,10 +69,10 @@ Optional:
 
 ## Wireframes
 
-###Main
+###Main  
 <img width="593" alt="MT_Main" src="https://user-images.githubusercontent.com/103143506/176749661-9234334d-cc50-4e05-abe1-39cba9d4cc74.png">  
 
-###Stretch
+###Stretch  
 <img width="505" alt="MT_messaging" src="https://user-images.githubusercontent.com/103143506/176749732-8ff08d66-5c24-4906-9351-32e6ebc81753.png">
 
 Information on the API - https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-top-artists-and-tracks
