@@ -68,8 +68,12 @@ Optional:
 * Profile -> Text field to be modified. 
 
 ## Wireframes
-<img width="625" alt="MusicTaste" src="https://user-images.githubusercontent.com/103143506/176490910-33d12f03-95b2-448b-975a-3798db74684c.png">
 
+###Main
+<img width="593" alt="MT_Main" src="https://user-images.githubusercontent.com/103143506/176749661-9234334d-cc50-4e05-abe1-39cba9d4cc74.png">  
+
+###Stretch
+<img width="505" alt="MT_messaging" src="https://user-images.githubusercontent.com/103143506/176749732-8ff08d66-5c24-4906-9351-32e6ebc81753.png">
 
 Information on the API - https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-top-artists-and-tracks
 
