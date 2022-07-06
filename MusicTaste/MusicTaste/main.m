@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import <SpotifyiOS/SpotifyiOS.h>
 
 int main(int argc, char * argv[]) {
     NSString * appDelegateClassName;
