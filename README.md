@@ -5,6 +5,7 @@
 ## Table of Contents
 1. [Overview](#Overview)
 1. [Product Spec](#Product-Spec)
+1. [Timeline](#Timeline)
 1. [Wireframes](#Wireframes)
 
 ## Overview
@@ -66,6 +67,32 @@ Optional:
 **Flow Navigation** (Screen to Screen)
 * Forced Log-in -> Account creation if no log in is available
 * Profile -> Text field to be modified. 
+
+### 4. Timeline
+
+**1st Week**  
+
+* Wireframe(create all screens and cells)  
+* Login Screen
+* Develop Matchmaking Screen
+* Develop plan for Algorithm
+
+**2nd Week**  
+
+* Implement Algorithm
+* Create Custom Gesture
+* Forced Login
+
+**3rd Week**  
+
+* Create Bio Page
+* Create Profile Page
+
+**4th Week** 
+* Messaging Page
+* Messaging
+* Liking Message
+* Implement more vairables in algorithm
 
 ## Wireframes
 
