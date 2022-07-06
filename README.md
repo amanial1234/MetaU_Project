@@ -96,9 +96,10 @@ Optional:
 * Messaging
 * Liking Message
 * Implement more vairables in algorithm
-* ## Schema 
 
-### 5. Models  
+### 5.Schema 
+
+### Models  
 
 **User**
 | Property | Type | Description |
