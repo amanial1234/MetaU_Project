@@ -6,7 +6,9 @@
 1. [Overview](#Overview)
 1. [Product Spec](#Product-Spec)
 1. [Timeline](#Timeline)
+1. [Schema](#Schema)
 1. [Wireframes](#Wireframes)
+
 
 ## Overview
 ### Description
@@ -74,6 +76,7 @@ Optional:
 
 * Wireframe(create all screens and cells)  
 * Login Screen
+* Automatic Sign up
 * Develop Matchmaking Screen
 * Develop plan for Algorithm
 
@@ -93,6 +96,26 @@ Optional:
 * Messaging
 * Liking Message
 * Implement more vairables in algorithm
+* ## Schema 
+
+### 5. Models  
+
+**User**
+| Property | Type | Description |
+| -------- | -------- | -------- |
+| objectId     | String  | unique id for the user  (default field) |
+| username | String | unique username for the user (default field) |
+| password | String | password for the user (default field) |
+| email | String | unique email for the user (default field) |
+| age | Integer | age of user |
+| bio | String | bio of user |
+| pictures | Array | pictures displayed on user profile |
+| matches | Array | users that current user has matched to |
+
+
+### Networking
+- [Add list of network requests by screen]
+- [Create basic snippets for each Parse network request]
 
 ## Wireframes
 
