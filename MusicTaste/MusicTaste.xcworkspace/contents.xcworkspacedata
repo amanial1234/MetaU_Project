@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:SpotifyiOS.framework">
-   </FileRef>
-   <FileRef
       location = "group:MusicTaste.xcodeproj">
    </FileRef>
    <FileRef

@@ -6,26 +6,38 @@
 //
 
 #import "MatchmakingViewController.h"
+#import "MatchCell.h"
 
-@interface MatchmakingViewController ()
+@interface MatchmakingViewController ()<UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *MatchTableView;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
-
+    
 @implementation MatchmakingViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.MatchTableView.dataSource = self;
+    self.MatchTableView.delegate = self;
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.MatchTableView insertSubview:self.refreshControl atIndex:0];
+    [self.MatchTableView addSubview:self.refreshControl];
+    self.MatchTableView.rowHeight = 540;
+    MatchCell *cell = [_MatchTableView dequeueReusableCellWithIdentifier:@"MatchCell"];
+    [self.view bringSubviewToFront:cell.matchName];
+}
+    
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 5;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    MatchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MatchCell"];
+    cell.matchName.text = @"Aman, 20";
+    return cell;
 }
-*/
+
+    
 
 @end

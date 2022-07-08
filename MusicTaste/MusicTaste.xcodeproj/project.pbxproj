@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		455B2E9E287791A200524595 /* BDBOAuth1SessionManager+SFAuthenticationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 455B2E9D287791A200524595 /* BDBOAuth1SessionManager+SFAuthenticationSession.m */; };
+		455B2EA42877955200524595 /* MusicTaste-Bridging-Header.m in Sources */ = {isa = PBXBuildFile; fileRef = 455B2EA32877955200524595 /* MusicTaste-Bridging-Header.m */; };
+		455B2EDD2877AAB900524595 /* SpotifyiOS.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 455B2EDC2877AAB900524595 /* SpotifyiOS.xcframework */; };
 		4578A3E22876323800EB96A0 /* SpotifyAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4578A3E12876323800EB96A0 /* SpotifyAPIManager.m */; };
+		4578A3E52876525A00EB96A0 /* MatchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4578A3E42876525A00EB96A0 /* MatchCell.m */; };
 		459577892874F04300D566DE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 459577882874F04300D566DE /* AppDelegate.m */; };
 		4595778C2874F04300D566DE /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4595778B2874F04300D566DE /* SceneDelegate.m */; };
 		459577922874F04300D566DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 459577902874F04300D566DE /* Main.storyboard */; };
@@ -45,8 +49,15 @@
 /* Begin PBXFileReference section */
 		04285ABD86E27BB8B7A101AC /* Pods_MusicTasteUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicTasteUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		047EF19126B25DCAA859E7C6 /* Pods-MusicTasteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicTasteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicTasteTests/Pods-MusicTasteTests.release.xcconfig"; sourceTree = "<group>"; };
+		455B2E9C287791A200524595 /* BDBOAuth1SessionManager+SFAuthenticationSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDBOAuth1SessionManager+SFAuthenticationSession.h"; sourceTree = "<group>"; };
+		455B2E9D287791A200524595 /* BDBOAuth1SessionManager+SFAuthenticationSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "BDBOAuth1SessionManager+SFAuthenticationSession.m"; sourceTree = "<group>"; };
+		455B2EA22877955200524595 /* MusicTaste-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MusicTaste-Bridging-Header.h"; path = "MusicTaste/APIManagers/MusicTaste-Bridging-Header.h"; sourceTree = "<group>"; };
+		455B2EA32877955200524595 /* MusicTaste-Bridging-Header.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "MusicTaste-Bridging-Header.m"; path = "MusicTaste/APIManagers/MusicTaste-Bridging-Header.m"; sourceTree = "<group>"; };
+		455B2EDC2877AAB900524595 /* SpotifyiOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SpotifyiOS.xcframework; sourceTree = "<group>"; };
 		4578A3E02876323800EB96A0 /* SpotifyAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpotifyAPIManager.h; sourceTree = "<group>"; };
 		4578A3E12876323800EB96A0 /* SpotifyAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpotifyAPIManager.m; sourceTree = "<group>"; };
+		4578A3E32876525A00EB96A0 /* MatchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchCell.h; sourceTree = "<group>"; };
+		4578A3E42876525A00EB96A0 /* MatchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchCell.m; sourceTree = "<group>"; };
 		459577842874F04300D566DE /* MusicTaste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicTaste.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		459577872874F04300D566DE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		459577882874F04300D566DE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -82,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				455B2EDD2877AAB900524595 /* SpotifyiOS.xcframework in Frameworks */,
 				68836B6E5AD463096802F15E /* Pods_MusicTaste.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,6 +133,7 @@
 		26FE249CEACF8A3C9D531490 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				455B2EDC2877AAB900524595 /* SpotifyiOS.xcframework */,
 				E3AC11E3EF09D70605DD95D2 /* Pods_MusicTaste.framework */,
 				DD6761B3501A7DCBBD555BF1 /* Pods_MusicTasteTests.framework */,
 				04285ABD86E27BB8B7A101AC /* Pods_MusicTasteUITests.framework */,
@@ -128,9 +141,31 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4578A3E62876526C00EB96A0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4578A3E42876525A00EB96A0 /* MatchCell.m */,
+				4578A3E32876525A00EB96A0 /* MatchCell.h */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		4578A3E72876527B00EB96A0 /* APIManagers */ = {
+			isa = PBXGroup;
+			children = (
+				455B2E9D287791A200524595 /* BDBOAuth1SessionManager+SFAuthenticationSession.m */,
+				455B2E9C287791A200524595 /* BDBOAuth1SessionManager+SFAuthenticationSession.h */,
+				4578A3E12876323800EB96A0 /* SpotifyAPIManager.m */,
+				4578A3E02876323800EB96A0 /* SpotifyAPIManager.h */,
+			);
+			path = APIManagers;
+			sourceTree = "<group>";
+		};
 		4595777B2874F04300D566DE = {
 			isa = PBXGroup;
 			children = (
+				455B2EA22877955200524595 /* MusicTaste-Bridging-Header.h */,
+				455B2EA32877955200524595 /* MusicTaste-Bridging-Header.m */,
 				459577862874F04300D566DE /* MusicTaste */,
 				459577A22874F04500D566DE /* MusicTasteTests */,
 				459577AC2874F04500D566DE /* MusicTasteUITests */,
@@ -153,6 +188,8 @@
 		459577862874F04300D566DE /* MusicTaste */ = {
 			isa = PBXGroup;
 			children = (
+				4578A3E62876526C00EB96A0 /* Cells */,
+				4578A3E72876527B00EB96A0 /* APIManagers */,
 				459577C528760DBF00D566DE /* View Controllers */,
 				459577872874F04300D566DE /* AppDelegate.h */,
 				459577882874F04300D566DE /* AppDelegate.m */,
@@ -163,8 +200,6 @@
 				459577952874F04500D566DE /* LaunchScreen.storyboard */,
 				459577982874F04500D566DE /* Info.plist */,
 				459577992874F04500D566DE /* main.m */,
-				4578A3E02876323800EB96A0 /* SpotifyAPIManager.h */,
-				4578A3E12876323800EB96A0 /* SpotifyAPIManager.m */,
 			);
 			path = MusicTaste;
 			sourceTree = "<group>";
@@ -415,9 +450,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				455B2EA42877955200524595 /* MusicTaste-Bridging-Header.m in Sources */,
 				4578A3E22876323800EB96A0 /* SpotifyAPIManager.m in Sources */,
 				459577892874F04300D566DE /* AppDelegate.m in Sources */,
 				4595779A2874F04500D566DE /* main.m in Sources */,
+				4578A3E52876525A00EB96A0 /* MatchCell.m in Sources */,
+				455B2E9E287791A200524595 /* BDBOAuth1SessionManager+SFAuthenticationSession.m in Sources */,
 				4595778C2874F04300D566DE /* SceneDelegate.m in Sources */,
 				459577C428760DB800D566DE /* ProfileViewController.m in Sources */,
 				459577BE28760D8900D566DE /* LoginViewController.m in Sources */,
@@ -598,6 +636,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 78JW727S8R;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MusicTaste/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -626,6 +668,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 78JW727S8R;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MusicTaste/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
