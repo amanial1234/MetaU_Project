@@ -11,9 +11,14 @@
 NS_ASSUME_NONNULL_BEGIN
 NS_ASSUME_NONNULL_END
 
-@interface SpotifyAPIManager : NSObject
+@interface SpotifyAPIManager : NSObject <SPTSessionManagerDelegate>
 
 + (instancetype)shared;
+
+@property (nonatomic, strong) SPTSessionManager *sessionmanager;
+@property (nonatomic, strong) SPTConfiguration *configuration;
+@property (nonatomic, strong) NSString *token;
+
 
 
 - (void) setUpSpotifyWithCompletion:(void (^)(NSDictionary *, NSError*))completion;
