@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		455B2E9E287791A200524595 /* BDBOAuth1SessionManager+SFAuthenticationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 455B2E9D287791A200524595 /* BDBOAuth1SessionManager+SFAuthenticationSession.m */; };
-		455B2EA42877955200524595 /* MusicTaste-Bridging-Header.m in Sources */ = {isa = PBXBuildFile; fileRef = 455B2EA32877955200524595 /* MusicTaste-Bridging-Header.m */; };
 		455B2EDD2877AAB900524595 /* SpotifyiOS.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 455B2EDC2877AAB900524595 /* SpotifyiOS.xcframework */; };
+		455B2EE32878B85D00524595 /* ConnectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 455B2EE22878B85D00524595 /* ConnectView.m */; };
+		455B2EE62878B89B00524595 /* ConnectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 455B2EE52878B89B00524595 /* ConnectButton.m */; };
 		4578A3E22876323800EB96A0 /* SpotifyAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4578A3E12876323800EB96A0 /* SpotifyAPIManager.m */; };
 		4578A3E52876525A00EB96A0 /* MatchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4578A3E42876525A00EB96A0 /* MatchCell.m */; };
 		459577892874F04300D566DE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 459577882874F04300D566DE /* AppDelegate.m */; };
@@ -51,9 +52,11 @@
 		047EF19126B25DCAA859E7C6 /* Pods-MusicTasteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicTasteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicTasteTests/Pods-MusicTasteTests.release.xcconfig"; sourceTree = "<group>"; };
 		455B2E9C287791A200524595 /* BDBOAuth1SessionManager+SFAuthenticationSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDBOAuth1SessionManager+SFAuthenticationSession.h"; sourceTree = "<group>"; };
 		455B2E9D287791A200524595 /* BDBOAuth1SessionManager+SFAuthenticationSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "BDBOAuth1SessionManager+SFAuthenticationSession.m"; sourceTree = "<group>"; };
-		455B2EA22877955200524595 /* MusicTaste-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MusicTaste-Bridging-Header.h"; path = "MusicTaste/APIManagers/MusicTaste-Bridging-Header.h"; sourceTree = "<group>"; };
-		455B2EA32877955200524595 /* MusicTaste-Bridging-Header.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "MusicTaste-Bridging-Header.m"; path = "MusicTaste/APIManagers/MusicTaste-Bridging-Header.m"; sourceTree = "<group>"; };
 		455B2EDC2877AAB900524595 /* SpotifyiOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SpotifyiOS.xcframework; sourceTree = "<group>"; };
+		455B2EE12878B85D00524595 /* ConnectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectView.h; sourceTree = "<group>"; };
+		455B2EE22878B85D00524595 /* ConnectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectView.m; sourceTree = "<group>"; };
+		455B2EE42878B89B00524595 /* ConnectButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectButton.h; sourceTree = "<group>"; };
+		455B2EE52878B89B00524595 /* ConnectButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectButton.m; sourceTree = "<group>"; };
 		4578A3E02876323800EB96A0 /* SpotifyAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpotifyAPIManager.h; sourceTree = "<group>"; };
 		4578A3E12876323800EB96A0 /* SpotifyAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpotifyAPIManager.m; sourceTree = "<group>"; };
 		4578A3E32876525A00EB96A0 /* MatchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchCell.h; sourceTree = "<group>"; };
@@ -141,6 +144,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		455B2EE02878B7B500524595 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				459577BC28760D8900D566DE /* LoginViewController.h */,
+				459577BD28760D8900D566DE /* LoginViewController.m */,
+				455B2EE12878B85D00524595 /* ConnectView.h */,
+				455B2EE22878B85D00524595 /* ConnectView.m */,
+				455B2EE42878B89B00524595 /* ConnectButton.h */,
+				455B2EE52878B89B00524595 /* ConnectButton.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		4578A3E62876526C00EB96A0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,8 +180,6 @@
 		4595777B2874F04300D566DE = {
 			isa = PBXGroup;
 			children = (
-				455B2EA22877955200524595 /* MusicTaste-Bridging-Header.h */,
-				455B2EA32877955200524595 /* MusicTaste-Bridging-Header.m */,
 				459577862874F04300D566DE /* MusicTaste */,
 				459577A22874F04500D566DE /* MusicTasteTests */,
 				459577AC2874F04500D566DE /* MusicTasteUITests */,
@@ -224,8 +238,7 @@
 		459577C528760DBF00D566DE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				459577BC28760D8900D566DE /* LoginViewController.h */,
-				459577BD28760D8900D566DE /* LoginViewController.m */,
+				455B2EE02878B7B500524595 /* Login */,
 				459577BF28760D9A00D566DE /* MatchmakingViewController.h */,
 				459577C028760D9A00D566DE /* MatchmakingViewController.m */,
 				459577C228760DB800D566DE /* ProfileViewController.h */,
@@ -450,7 +463,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				455B2EA42877955200524595 /* MusicTaste-Bridging-Header.m in Sources */,
+				455B2EE62878B89B00524595 /* ConnectButton.m in Sources */,
 				4578A3E22876323800EB96A0 /* SpotifyAPIManager.m in Sources */,
 				459577892874F04300D566DE /* AppDelegate.m in Sources */,
 				4595779A2874F04500D566DE /* main.m in Sources */,
@@ -459,6 +472,7 @@
 				4595778C2874F04300D566DE /* SceneDelegate.m in Sources */,
 				459577C428760DB800D566DE /* ProfileViewController.m in Sources */,
 				459577BE28760D8900D566DE /* LoginViewController.m in Sources */,
+				455B2EE32878B85D00524595 /* ConnectView.m in Sources */,
 				459577C128760D9A00D566DE /* MatchmakingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
