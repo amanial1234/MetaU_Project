@@ -9,6 +9,8 @@
 #import <Parse/Parse.h>
 #import "ConnectView.h"
 #import "LoginViewController.h"
+#import "SpotifyAPIManager.h"
+#import "dispatch/dispatch.h"
 
 static NSString * const SpotifyClientID = @"9f9a8a428178497e8c58840c65d9f3c0";
 static NSString * const SpotifySecretID = @"085725985e87480fab42de4970086a54";
@@ -17,13 +19,9 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
 
 @interface UIViewController ()
 
-@property (nonatomic, assign) BOOL didAuthorize;
-
 @end
 
 @implementation LoginViewController
-
-@synthesize didAuthorize = _didAuthorize;
 
 #pragma mark - Authorization example
 
@@ -34,32 +32,30 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
     self.sessionManager = [SPTSessionManager sessionManagerWithConfiguration:configuration
                                                                        delegate:self];
     [super viewDidLoad];
-    if(self.didAuthorize){
-    }
-    else{
-    }
 }
 
 #pragma mark - Actions
 
 - (void)didTapAuthButton:(ConnectButton *)sender
 {
-    SPTScope scope = SPTUserLibraryReadScope | SPTPlaylistReadPrivateScope;
-    if (@available(iOS 11, *)) {
-        [self.sessionManager initiateSessionWithScope:scope options:SPTDefaultAuthorizationOption ];
-    } else {
-        [self.sessionManager initiateSessionWithScope:scope options:SPTDefaultAuthorizationOption presentingViewController:self];
-    }
+    SpotifyAPIManager *api = [SpotifyAPIManager shared];
+    [self methodAWithCompletion:^(BOOL success) {
+        self.myBool = TRUE;
+    
+    }];
 }
 
 #pragma mark - SPTSessionManagerDelegate
 
 - (void)sessionManager:(SPTSessionManager *)manager didInitiateSession:(SPTSession *)session
 {
-    [self presentAlertControllerWithTitle:@"Authorization Succeeded"
-                                  message:session.description
-                              buttonTitle:@"Nice"];
-    self.didAuthorize = YES;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentAlertControllerWithTitle:@"Authorization Succeeded"
+                                      message:session.description
+                                  buttonTitle:@"Nice"];
+        [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+        
+    });
 }
 
 
@@ -106,5 +102,22 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
                          completion:nil];
     });
 }
+- (void)methodAWithCompletion:(void (^) (BOOL success))completion
+{
+    SpotifyAPIManager *api = [SpotifyAPIManager shared];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, kNilOptions), ^{
+        [api setUpSpotifyWithCompletion:^(NSDictionary *data, NSError *error) {
+            if (!error) {
+            }else{
+            }
+        }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            PFUser *current = [PFUser currentUser];
+            [current saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {}];
+            [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+            completion(self.myBool);
 
+        });
+    });
+}
 @end

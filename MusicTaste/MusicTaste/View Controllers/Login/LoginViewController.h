@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @property (nonatomic) SPTSessionManager *sessionManager;
+@property (assign) BOOL myBool;
 
 @end
 

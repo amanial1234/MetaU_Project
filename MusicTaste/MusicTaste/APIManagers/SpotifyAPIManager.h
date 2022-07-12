@@ -15,10 +15,10 @@ NS_ASSUME_NONNULL_END
 
 + (instancetype)shared;
 
-@property (nonatomic, strong) SPTSessionManager *sessionmanager;
+@property (nonatomic, strong) SPTSessionManager *sessionManager;
 @property (nonatomic, strong) SPTConfiguration *configuration;
 @property (nonatomic, strong) NSString *token;
-
+@property (weak) IBOutlet UIWindow *window;
 
 
 - (void) setUpSpotifyWithCompletion:(void (^)(NSDictionary *, NSError*))completion;
