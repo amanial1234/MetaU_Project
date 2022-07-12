@@ -1,10 +1,3 @@
-//
-//  ConnectButton.m
-//  MusicTaste
-//
-//  Created by Aman Abraham on 7/8/22.
-//
-
 #import "ConnectButton.h"
 
 @implementation ConnectButton
