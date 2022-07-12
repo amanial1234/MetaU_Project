@@ -1,10 +1,3 @@
-//
-//  MatchmakingViewController.m
-//  MusicTaste
-//
-//  Created by Aman Abraham on 7/6/22.
-//
-
 #import "MatchmakingViewController.h"
 #import "MatchCell.h"
 
@@ -23,6 +16,7 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.MatchTableView insertSubview:self.refreshControl atIndex:0];
     [self.MatchTableView addSubview:self.refreshControl];
+    
     self.MatchTableView.rowHeight = 540;
     MatchCell *cell = [_MatchTableView dequeueReusableCellWithIdentifier:@"MatchCell"];
     [self.view bringSubviewToFront:cell.matchName];

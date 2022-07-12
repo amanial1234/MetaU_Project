@@ -1,10 +1,3 @@
-//
-//  SpotifyAPIManager.m
-//  MusicTaste
-//
-//  Created by Aman Abraham on 7/6/22.
-//
-
 #import "SpotifyAPIManager.h"
 #import <Parse/Parse.h>
 #import "AppDelegate.h"
@@ -14,7 +7,6 @@
 #import "LoginViewController.h"
 
 @implementation SpotifyAPIManager
-
 
 + (instancetype)shared {
     static SpotifyAPIManager *sharedManager = nil;
@@ -37,18 +29,11 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
     NSURL *spotifyRedirectURL = [NSURL URLWithString:SpotifyRedirectURLString];
 
     self.configuration  = [[SPTConfiguration alloc] initWithClientID:spotifyClientID redirectURL:spotifyRedirectURL];
-    
     self.configuration.playURI = @"";
-
     self.sessionManager = [[SPTSessionManager alloc] initWithConfiguration:self.configuration delegate:self];
     
     SPTScope requestedScope = SPTUserLibraryReadScope | SPTPlaylistReadPrivateScope |  SPTUserTopReadScope;
-     
-    if (@available(iOS 11, *)) {
-        [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
-    } else {
-        [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption presentingViewController:self];
-    }
+    [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
     completion(nil, nil);
 }
 
@@ -57,8 +42,6 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
     [self.sessionManager application:app openURL:url options:options];
     return true;
 }
-
-
 
 #pragma mark - SPTSessionManagerDelegate
 
@@ -71,13 +54,8 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
 
 - (void)sessionManager:(SPTSessionManager *)manager didFailWithError:(NSError *)error
 {}
-
 - (void)sessionManager:(SPTSessionManager *)manager didRenewSession:(SPTSession *)session
 {}
-
-
-
-
 
 #pragma mark - Getting Spotify Data
 
@@ -89,6 +67,7 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
             // get dictionary of genres and artists based on top artists
             NSDictionary *artistDict = [self convertSpotifyArtists:artistArray];
             // get tracks data
+            NSLog(@"array: %@", artistArray);
             [self getSpotifyData:@"https://api.spotify.com/v1/me/top/tracks" completion:^(NSDictionary * tracksDict, NSError * error) {
                 if (!error){
                     NSArray *tracksArray = tracksDict[@"items"];
@@ -101,7 +80,6 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
         }
     }];
 }
-
 
 -(void) getSpotifyData:(NSString *)urlString completion:(void (^)(NSDictionary *, NSError*))completion{
     NSURL *url = [NSURL URLWithString:urlString];
@@ -122,7 +100,6 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
        }];
     [task resume];
 }
-
 
 - (NSDictionary *) convertSpotifyArtists:(NSArray *)artists{
     NSMutableSet *genreSet = [[NSMutableSet alloc] init];
@@ -164,7 +141,7 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
 }
 
 -(void) saveData:(NSDictionary *) spotifyData{
-    
+    //TBD
 }
 
 

@@ -1,12 +1,4 @@
-//
-//  ConnectView.m
-//  MusicTaste
-//
-//  Created by Aman Abraham on 7/8/22.
-//
-
 #import "ConnectView.h"
-
 
 @implementation ConnectView
 

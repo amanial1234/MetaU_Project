@@ -1,10 +1,3 @@
-//
-//  SpotifyAPIManager.h
-//  MusicTaste
-//
-//  Created by Aman Abraham on 7/6/22.
-//
-
 #import <Foundation/Foundation.h>
 #import <SpotifyiOS/SpotifyiOS.h>
 

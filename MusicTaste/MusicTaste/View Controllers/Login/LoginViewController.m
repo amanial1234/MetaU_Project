@@ -1,10 +1,3 @@
-//
-//  LoginViewController.m
-//  MusicTaste
-//
-//  Created by Aman Abraham on 7/6/22.
-//
-
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
 #import "ConnectView.h"
@@ -15,7 +8,6 @@
 static NSString * const SpotifyClientID = @"9f9a8a428178497e8c58840c65d9f3c0";
 static NSString * const SpotifySecretID = @"085725985e87480fab42de4970086a54";
 static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://spotify-login-callback";
-
 
 @interface UIViewController ()
 
@@ -39,9 +31,10 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
 - (void)didTapAuthButton:(ConnectButton *)sender
 {
     SpotifyAPIManager *api = [SpotifyAPIManager shared];
-    [self methodAWithCompletion:^(BOOL success) {
-        self.myBool = TRUE;
-    
+    [api setUpSpotifyWithCompletion:^(NSDictionary *data, NSError *error) {
+        if (!error) {
+            [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+        }else{}
     }];
 }
 
@@ -100,24 +93,6 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
         [self presentViewController:alertController
                            animated:YES
                          completion:nil];
-    });
-}
-- (void)methodAWithCompletion:(void (^) (BOOL success))completion
-{
-    SpotifyAPIManager *api = [SpotifyAPIManager shared];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, kNilOptions), ^{
-        [api setUpSpotifyWithCompletion:^(NSDictionary *data, NSError *error) {
-            if (!error) {
-            }else{
-            }
-        }];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            PFUser *current = [PFUser currentUser];
-            [current saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {}];
-            [self performSegueWithIdentifier:@"loginSegue" sender:nil];
-            completion(self.myBool);
-
-        });
     });
 }
 @end
