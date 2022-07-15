@@ -1,13 +1,13 @@
 #import <UIKit/UIKit.h>
-#import <SpotifyiOS/SpotifyiOS.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LoginViewController : UIViewController<SPTSessionManagerDelegate>
+@interface LoginViewController : UIViewController
 
-
-@property (nonatomic) SPTSessionManager *sessionManager;
-@property (assign) BOOL myBool;
+@property (weak, nonatomic) IBOutlet UITextField *usernameField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UIButton *logInButton;
+@property (weak, nonatomic) IBOutlet UIButton *signUpButton;    
 
 @end
 

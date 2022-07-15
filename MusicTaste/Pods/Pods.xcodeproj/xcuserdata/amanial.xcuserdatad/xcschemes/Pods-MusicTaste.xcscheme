@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "89E696B16A69EAB0C50102983F38DD41"
+               BlueprintIdentifier = "3AA3025B18A441008C037438CE6F7A81"
                BuildableName = "Pods_MusicTaste.framework"
                BlueprintName = "Pods-MusicTaste"
                ReferencedContainer = "container:Pods.xcodeproj">

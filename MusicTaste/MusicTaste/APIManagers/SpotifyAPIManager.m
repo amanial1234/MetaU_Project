@@ -4,10 +4,12 @@
 #import "MatchmakingViewController.h"
 #import <CoreData/CoreData.h>
 #import "ConnectView.h"
-#import "LoginViewController.h"
+#import "ConnectViewController.h"
+#import "dispatch/dispatch.h"
 
 @implementation SpotifyAPIManager
 
+#pragma mark - Shared
 + (instancetype)shared {
     static SpotifyAPIManager *sharedManager = nil;
     static dispatch_once_t onceToken;
@@ -17,21 +19,19 @@
     return sharedManager;
 }
 
+//Spotify API IDs
 static NSString * const SpotifyClientID = @"9f9a8a428178497e8c58840c65d9f3c0";
 static NSString * const SpotifySecretID = @"085725985e87480fab42de4970086a54";
 static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://spotify-login-callback";
-
 
 #pragma mark - Actions
 
 - (void) setUpSpotifyWithCompletion:(void (^)(NSDictionary *, NSError*))completion{
     NSString *spotifyClientID = SpotifyClientID;
     NSURL *spotifyRedirectURL = [NSURL URLWithString:SpotifyRedirectURLString];
-
     self.configuration  = [[SPTConfiguration alloc] initWithClientID:spotifyClientID redirectURL:spotifyRedirectURL];
     self.configuration.playURI = @"";
     self.sessionManager = [[SPTSessionManager alloc] initWithConfiguration:self.configuration delegate:self];
-    
     SPTScope requestedScope = SPTUserLibraryReadScope | SPTPlaylistReadPrivateScope |  SPTUserTopReadScope;
     [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
     completion(nil, nil);
@@ -47,11 +47,15 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
 
 - (void)sessionManager:(SPTSessionManager *)manager didInitiateSession:(SPTSession *)session
 {
+    //returned message if the session succeeded
     self.token = session.accessToken;
     [self getSpotifyTracksArtists:^(NSDictionary *dict, NSError *error) {
+        if (!error){
+            //Gets Access Token and save user's Spotify Track Artists data
+            [self saveData:dict];
+    }
     }];
 }
-
 - (void)sessionManager:(SPTSessionManager *)manager didFailWithError:(NSError *)error
 {}
 - (void)sessionManager:(SPTSessionManager *)manager didRenewSession:(SPTSession *)session
@@ -67,13 +71,12 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
             // get dictionary of genres and artists based on top artists
             NSDictionary *artistDict = [self convertSpotifyArtists:artistArray];
             // get tracks data
-            NSLog(@"array: %@", artistArray);
             [self getSpotifyData:@"https://api.spotify.com/v1/me/top/tracks" completion:^(NSDictionary * tracksDict, NSError * error) {
                 if (!error){
                     NSArray *tracksArray = tracksDict[@"items"];
                     // get dictionary of genres, tracks, and artists based on top tracks
                     NSDictionary *tracksDict =[self convertSpotifyTracks:tracksArray];
-                    [artistDict[@"artists"] unionSet:tracksDict[@"artists"]];
+                     [artistDict[@"artists"] addObject:tracksDict[@"artists"]];
                     completion(@{@"artists": artistDict[@"artists"], @"tracks":tracksDict[@"tracks"], @"albums": tracksDict[@"albums"], @"genres": artistDict[@"genres"], @"images": artistDict[@"images"]}, nil);
                 }
             }];
@@ -85,6 +88,7 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+    //Compiles Get Request for using Spotify API
     [request setHTTPMethod:@"GET"];
     [request addValue:[@"Bearer " stringByAppendingString:self.token] forHTTPHeaderField:@"Authorization"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -102,47 +106,46 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
 }
 
 - (NSDictionary *) convertSpotifyArtists:(NSArray *)artists{
-    NSMutableSet *genreSet = [[NSMutableSet alloc] init];
-    NSMutableSet *artistSet = [[NSMutableSet alloc] init];
+    //Converts Spotify Data into arrays that store the User's Top Genre, Top Artist's Names and Images
+    NSMutableArray *genreArray = [[NSMutableArray alloc] init];
+    NSMutableArray *artistArray = [[NSMutableArray alloc] init];
     NSMutableArray *artistImages = [NSMutableArray new];
     for (NSDictionary *artist in artists){
         if  (artistImages.count < 10){
             NSArray *artistAndImage = [NSArray arrayWithObjects: artist[@"name"],artist[@"images"][2][@"url"], nil];
             [artistImages addObject:artistAndImage];
         }
-        [genreSet addObjectsFromArray:artist[@"genres"]];
-        [artistSet addObject:artist[@"id"]];
+        [genreArray addObjectsFromArray:artist[@"genres"]];
+        [artistArray addObject:artist[@"id"]];
     }
-    return @{@"genres": genreSet, @"artists": artistSet, @"images": artistImages};
+    //Returns all the data into an Dictionary
+    return @{@"genres": genreArray, @"artists": artistArray, @"images": artistImages};
 }
 
 - (NSDictionary *) convertSpotifyTracks:(NSArray *)tracks{
-    NSMutableSet *trackSet = [[NSMutableSet alloc] init];
-    NSMutableSet *artistSet = [[NSMutableSet alloc] init];
-    NSMutableSet *albumSet = [[NSMutableSet alloc] init];
+    NSMutableArray *trackSet = [[NSMutableArray alloc] init];
+    NSMutableArray *artistSet = [[NSMutableArray alloc] init];
+    NSMutableArray *albumSet = [[NSMutableArray alloc] init];
     for (NSDictionary *track in tracks){
         NSDictionary *albumItems = track[@"album"];
-        // adds album and artist of album to set
+        // adds album and artist of album to array
         [albumSet addObject:albumItems[@"id"]];
         for (NSDictionary *artist in albumItems[@"artists"]){
             [artistSet addObject:artist[@"id"]];
         }
-        // adds artists on song to set
+        // adds artists on song to array
         NSArray *trackArtists = track[@"artists"];
         if (trackArtists.count>1){
             for (NSDictionary *artist in trackArtists){
                 [artistSet addObject:artist[@"id"]];
             }
         }
-        // adds track id to set
+        // adds track id to array
         [trackSet addObject:track[@"id"]];
     }
+    //Returns all the data into a dictionary
     return @{@"albums": albumSet, @"artists": artistSet, @"tracks":trackSet};
 }
-
 -(void) saveData:(NSDictionary *) spotifyData{
-    //TBD
 }
-
-
 @end

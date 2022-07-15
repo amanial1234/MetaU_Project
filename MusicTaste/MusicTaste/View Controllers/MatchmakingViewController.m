@@ -9,6 +9,16 @@
     
 @implementation MatchmakingViewController
 
++ (instancetype)sharedMatchmaking {
+    static MatchmakingViewController * MatchVC = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        MatchVC = [[self alloc] init];
+    });
+    return MatchVC;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.MatchTableView.dataSource = self;
