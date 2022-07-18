@@ -6,6 +6,7 @@
 #import "ConnectView.h"
 #import "ConnectViewController.h"
 #import "dispatch/dispatch.h"
+#import "User.h"
 
 @implementation SpotifyAPIManager
 
@@ -52,7 +53,8 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
     [self getSpotifyTracksArtists:^(NSDictionary *dict, NSError *error) {
         if (!error){
             //Gets Access Token and save user's Spotify Track Artists data
-            [self saveData:dict];
+            [self saveSpotifyData:dict];
+            [self saveSpotifyUserData:dict];
     }
     }];
 }
@@ -146,6 +148,28 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
     //Returns all the data into a dictionary
     return @{@"albums": albumSet, @"artists": artistSet, @"tracks":trackSet};
 }
--(void) saveData:(NSDictionary *) spotifyData{
+-(void) saveSpotifyData:(NSDictionary *) spotifyData{
+    //Saves all Spotify Data such as there top genres,tracks,artist,album,and the artist images to the Parse Database
+    PFUser *current = [PFUser currentUser];
+    current[@"genres"] = [NSArray arrayWithArray:spotifyData[@"genres"]];
+    current[@"tracks"] = [NSArray arrayWithArray:spotifyData[@"tracks"]];
+    current[@"artists"] = [NSArray arrayWithArray:spotifyData[@"artists"]];
+    current[@"albums"] = [NSArray arrayWithArray:spotifyData[@"albums"]];
+    current[@"images"] = [NSArray arrayWithArray:spotifyData[@"images"]];
+    [PFUser.currentUser saveInBackground];
 }
+-(void) saveSpotifyUserData:(NSDictionary *) spotifyData{
+    // Saves name and Profile Picture to User
+    [self getSpotifyData:@"https://api.spotify.com/v1/me" completion:^(NSDictionary * userDict, NSError * error) {
+        if (!error){
+            NSString *name = userDict[@"display_name"];
+            NSArray *image= userDict[@"images"];
+            NSDictionary *imageDict = [image objectAtIndex:0];
+            NSString * url =[NSString stringWithFormat:imageDict[@"url"], nil];
+            [User user].profilePicture = url;
+            [User user].name = [NSString stringWithFormat: name, nil];
+                }
+        }];
+}
+
 @end
