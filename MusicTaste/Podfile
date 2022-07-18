@@ -10,7 +10,6 @@ target 'MusicTaste' do
   pod 'Parse/UI'
   pod 'GMImagePicker'
   pod 'AFNetworking'
-  pod 'HTPressableButton'
 
   target 'MusicTasteTests' do
     inherit! :search_paths

@@ -4,7 +4,7 @@
 
 @interface ProfileViewController () 
 //connects objects: Screenname and profileview
-@property (weak, nonatomic) IBOutlet UILabel *screen_name;
+@property (weak, nonatomic) IBOutlet UILabel *screenName;
 @property (weak, nonatomic) IBOutlet UIImageView *profileView;
 
 
@@ -15,7 +15,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //Sets username
-    self.screen_name.text = [[User user] name];
+    self.screenName.text = [[User user] name];
     //Gets image Url
     NSString *URLString = [[User user] profilePicture];
     NSString *stringWithoutNormal = [URLString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];

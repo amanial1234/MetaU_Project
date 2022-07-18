@@ -1,5 +1,7 @@
 #import "MatchmakingViewController.h"
 #import "MatchCell.h"
+#import "User.h"
+#import "SpotifyAPIManager.h"
 
 @interface MatchmakingViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *MatchTableView;
@@ -8,16 +10,6 @@
 @end
     
 @implementation MatchmakingViewController
-
-+ (instancetype)sharedMatchmaking {
-    static MatchmakingViewController * MatchVC = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        MatchVC = [[self alloc] init];
-    });
-    return MatchVC;
-}
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,7 +33,5 @@
     cell.matchName.text = @"Aman, 20";
     return cell;
 }
-
-    
 
 @end
