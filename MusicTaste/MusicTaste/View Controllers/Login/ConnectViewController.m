@@ -22,7 +22,7 @@
     SpotifyAPIManager *api = [SpotifyAPIManager shared];
     [api setUpSpotifyWithCompletion:^(NSDictionary *data, NSError *error) {
         if (!error) {
-            //Once authorize the ConnectViewController will segue to the LoginViewControlelr
+            //Once authorize the ConnectViewController will segue to the LoginView Controlelr
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
         }else{}
     }];

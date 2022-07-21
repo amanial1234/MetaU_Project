@@ -2,7 +2,6 @@
 #import <Parse/Parse.h>
 #import "AppDelegate.h"
 #import "MatchmakingViewController.h"
-#import <CoreData/CoreData.h>
 #import "ConnectView.h"
 #import "ConnectViewController.h"
 #import "dispatch/dispatch.h"
@@ -55,7 +54,7 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
             //Gets Access Token and save user's Spotify Track Artists data
             [self saveSpotifyData:dict];
             [self saveSpotifyUserData:dict];
-    }
+        }
     }];
 }
 - (void)sessionManager:(SPTSessionManager *)manager didFailWithError:(NSError *)error
@@ -78,7 +77,7 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
                     NSArray *tracksArray = tracksDict[@"items"];
                     // get dictionary of genres, tracks, and artists based on top tracks
                     NSDictionary *tracksDict =[self convertSpotifyTracks:tracksArray];
-                     [artistDict[@"artists"] addObject:tracksDict[@"artists"]];
+                    [artistDict[@"artists"] addObject:tracksDict[@"artists"]];
                     completion(@{@"artists": artistDict[@"artists"], @"tracks":tracksDict[@"tracks"], @"albums": tracksDict[@"albums"], @"genres": artistDict[@"genres"], @"images": artistDict[@"images"]}, nil);
                 }
             }];
@@ -96,14 +95,14 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-           if (error != nil) {
-               completion(nil, error);
-           }
-           else {
-               NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-               completion(dataDictionary, nil);
-           }
-       }];
+        if (error != nil) {
+            completion(nil, error);
+        }
+        else {
+            NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            completion(dataDictionary, nil);
+        }
+    }];
     [task resume];
 }
 
@@ -150,26 +149,38 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
 }
 -(void) saveSpotifyData:(NSDictionary *) spotifyData{
     //Saves all Spotify Data such as there top genres,tracks,artist,album,and the artist images to the Parse Database
+    PFObject *music = [PFObject objectWithClassName:@"Music"];
     PFUser *current = [PFUser currentUser];
-    current[@"genres"] = [NSArray arrayWithArray:spotifyData[@"genres"]];
-    current[@"tracks"] = [NSArray arrayWithArray:spotifyData[@"tracks"]];
-    current[@"artists"] = [NSArray arrayWithArray:spotifyData[@"artists"]];
-    current[@"albums"] = [NSArray arrayWithArray:spotifyData[@"albums"]];
-    current[@"images"] = [NSArray arrayWithArray:spotifyData[@"images"]];
-    [PFUser.currentUser saveInBackground];
+    PFQuery *query = [PFQuery queryWithClassName:@"Music"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
+        if (![[results valueForKey:@"userId"]containsObject:current.objectId]){
+            //Checks if User has already been added to database before adding
+            music[@"userId"] = current.objectId;
+            music[@"genres"] = [NSArray arrayWithArray:spotifyData[@"genres"]];
+            music[@"tracks"] = [NSArray arrayWithArray:spotifyData[@"tracks"]];
+            music[@"artists"] = [NSArray arrayWithArray:spotifyData[@"artists"]];
+            music[@"albums"] = [NSArray arrayWithArray:spotifyData[@"albums"]];
+            music[@"images"] = [NSArray arrayWithArray:spotifyData[@"images"]];
+            [music saveEventually];
+        }
+    }];
 }
+
 -(void) saveSpotifyUserData:(NSDictionary *) spotifyData{
     // Saves name and Profile Picture to User
     [self getSpotifyData:@"https://api.spotify.com/v1/me" completion:^(NSDictionary * userDict, NSError * error) {
         if (!error){
+            PFUser *current = [PFUser currentUser];
             NSString *name = userDict[@"display_name"];
             NSArray *image= userDict[@"images"];
             NSDictionary *imageDict = [image objectAtIndex:0];
-            NSString * url =[NSString stringWithFormat:imageDict[@"url"], nil];
-            [User user].profilePicture = url;
-            [User user].name = [NSString stringWithFormat: name, nil];
-                }
-        }];
+            if (!imageDict == nil){
+                [User user].name = [NSString stringWithFormat: name, nil];
+                NSString * url =[NSString stringWithFormat:imageDict[@"url"], nil];
+                [User user].profilePicture = url;
+            }
+        }
+    }];
 }
 
 @end

@@ -2,6 +2,7 @@
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
 #import "UIColor+HTColor.h"
+#import "SpotifyAPIManager.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 
@@ -38,7 +39,9 @@
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         if (error == nil) {
             //If the username and password are in the data base perform segue to MatchmakingViewController
+            SpotifyAPIManager *api = [SpotifyAPIManager shared];
             [self performSegueWithIdentifier:@"tabBarSegue" sender:nil];
+            
         }
         else{
             //If the username and password are not in the data base return Invalid Login UIAlert
