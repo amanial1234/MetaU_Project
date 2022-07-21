@@ -39,7 +39,6 @@
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         if (error == nil) {
             //If the username and password are in the data base perform segue to MatchmakingViewController
-            SpotifyAPIManager *api = [SpotifyAPIManager shared];
             [self performSegueWithIdentifier:@"tabBarSegue" sender:nil];
             
         }
