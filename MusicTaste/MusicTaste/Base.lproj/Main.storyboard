@@ -282,7 +282,7 @@
                     <navigationItem key="navigationItem" id="Swl-rn-oj0"/>
                     <connections>
                         <outlet property="profileView" destination="33c-SI-ggc" id="Bq6-FU-A04"/>
-                        <outlet property="screen_name" destination="WVV-Vf-6dK" id="5qU-so-Vmm"/>
+                        <outlet property="screenName" destination="WVV-Vf-6dK" id="XW1-IC-53l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IVC-fJ-2UQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

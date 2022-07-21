@@ -2,6 +2,7 @@
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
 #import "UIColor+HTColor.h"
+#import "SpotifyAPIManager.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 
@@ -39,6 +40,7 @@
         if (error == nil) {
             //If the username and password are in the data base perform segue to MatchmakingViewController
             [self performSegueWithIdentifier:@"tabBarSegue" sender:nil];
+            
         }
         else{
             //If the username and password are not in the data base return Invalid Login UIAlert

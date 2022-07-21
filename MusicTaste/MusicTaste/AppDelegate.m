@@ -47,5 +47,8 @@
 
 - (void)application:(UIApplication *)application didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
 }
+#pragma mark - Core Data stack
+
+
 
 @end
