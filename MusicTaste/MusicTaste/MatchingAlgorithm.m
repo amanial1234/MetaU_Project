@@ -16,7 +16,7 @@
     return sharedManager;
 }
 
-+ (void) lookForMatches{
+- (void) lookForMatches{
     NSMutableDictionary *matchDict = [NSMutableDictionary new];
     PFObject *music = [PFObject objectWithClassName:@"Music"];
     PFQuery *query = [PFQuery queryWithClassName:@"Music"];
@@ -24,30 +24,26 @@
     //Goes through Query
     [query findObjectsInBackgroundWithBlock:^(NSArray *spotifyData, NSError *error) {
         for (PFObject *user in spotifyData){
-            //We make sure we are not comparing the same object
-            if (![user.objectId isEqual:music.objectId]){
-                //Calls the compare function to compare each user
-                [MatchingAlgorithm compare:user withDictionary:matchDict withData:user];
-            }
+            //Calls the compare function to compare each user
+            [self compareSpotifyData:user withData:spotifyData];
         }
+        //sets the matches as an integer in the user's database
+        [current saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {}];
     }];
-    //sets the matches as an integer in the user's database
-    NSArray *matches = [[[matchDict keysSortedByValueUsingSelector:@selector(compare:)] reverseObjectEnumerator] allObjects];
-    music[@"matches"] = [NSArray arrayWithArray:matches];
-    [current saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {}];
+    
 }
 
-+ (double) compareSpotifyData:(PFObject *)potentialMatch withData:(NSManagedObject *)userSpotify{
-    double spotifyMatch = 0.0;
+- (void) compareSpotifyData:(PFObject *)potentialMatch withData:(NSManagedObject*)userSpotify{
     PFQuery *query = [PFQuery queryWithClassName:@"Music"];
     PFUser *current = [PFUser currentUser];
-    [query whereKey:@"userId" equalTo:current.objectId];
     //Makes sure the we are collecting information from the current user
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
+    self.spotifyMatch = 0.0;
+    NSMutableArray *matches = [NSMutableArray array];
             double spotifyMatch = 0.0;
-            NSManagedObject *matchData = results[0];
-            if (potentialMatch != NULL){
+    for (NSManagedObject *matchData in userSpotify){
+        if (potentialMatch != NULL){
+            if (![potentialMatch.objectId isEqual:[matchData valueForKey:@"objectId"]]){
+                NSMutableDictionary *matchesDict = [NSMutableDictionary dictionary];
                 //Calls the genres,tracks, albums, and artists from the database
                 NSMutableArray *matchDataGenres = [matchData valueForKey:@"genres"];
                 NSMutableArray *matchDataTracks = [matchData valueForKey:@"tracks"];
@@ -58,35 +54,36 @@
                 NSInteger albumCount = [matchDataAlbums count];
                 NSInteger trackCount = [matchDataTracks count];
                 NSInteger artistCount = [matchDataArtists count];
+                //Makes copies of array to avoid deletion of data
+                NSMutableArray *matchDataGenresCopy = [[NSMutableArray alloc] initWithArray:matchDataGenres];
+                NSMutableArray *matchDataTracksCopy = [[NSMutableArray alloc] initWithArray:matchDataTracks];
+                NSMutableArray *matchDataAlbumsCopy = [[NSMutableArray alloc] initWithArray:matchDataAlbums];
+                NSMutableArray *matchDataArtistsCopy = [[NSMutableArray alloc] initWithArray:matchDataArtists];
                 //removes repeating objects in arrays compared to the potential match
-                [matchDataGenres removeObjectsInArray:[potentialMatch valueForKey:@"genres"]];
-                [matchDataTracks removeObjectsInArray:[potentialMatch valueForKey:@"tracks"]];
-                [matchDataAlbums removeObjectsInArray:[potentialMatch valueForKey:@"albums"]];
-                [matchDataArtists removeObjectsInArray:[potentialMatch valueForKey:@"artists"]];
+                [matchDataGenresCopy removeObjectsInArray:[potentialMatch valueForKey:@"genres"]];
+                [matchDataTracksCopy removeObjectsInArray:[potentialMatch valueForKey:@"tracks"]];
+                [matchDataAlbumsCopy removeObjectsInArray:[potentialMatch valueForKey:@"albums"]];
+                [matchDataArtistsCopy removeObjectsInArray:[potentialMatch valueForKey:@"artists"]];
                 //gets the new count of the array
-                double newGenreCount = [matchDataGenres count];
-                double newAlbumCount = [matchDataAlbums count];
-                double newTrackCount = [matchDataTracks count];
-                double newArtistCount = [matchDataArtists count];
+                double newGenreCount = [matchDataGenresCopy count];
+                double newAlbumCount = [matchDataAlbumsCopy count];
+                double newTrackCount = [matchDataTracksCopy count];
+                double newArtistCount = [matchDataArtistsCopy count];
                 //generates a integer to determine how similar the two user's music taste is - 0 for similar and 1 for not similar at all
-                spotifyMatch = (((newGenreCount/genreCount)*0.2) + ((newTrackCount/trackCount)*0.3) + ((newAlbumCount/albumCount)*0.2) + ((newArtistCount/artistCount)*0.3));
+                if (genreCount == 0 || albumCount == 0 || trackCount == 0 || albumCount == 0){
+                    //To avoid dividing by zero if any of the counts are zero we make the Spotify match automatically 1
+                    self.spotifyMatch = 1;
+                }else{
+                self.spotifyMatch = (((newGenreCount/genreCount)*0.2) + ((newTrackCount/trackCount)*0.3) + ((newAlbumCount/albumCount)*0.2) + ((newArtistCount/artistCount)*0.3));
+                }
+                [matchesDict setObject:[NSNumber numberWithDouble:self.spotifyMatch] forKey:[matchData valueForKey:@"objectId"]];
+                [matches addObject:matchesDict];
+                }
             }
-        }];
-    });
-    return spotifyMatch;
-}
-
-+ (void) compare:(PFObject *)potentialMatch withDictionary:(NSMutableDictionary *)matches withData:(NSManagedObject *)data {
-    PFQuery *query = [PFQuery queryWithClassName:@"Music"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
-        //Creates a double that will be used to measure the similarity between users
-        double spotifyComp = 0.0;
-        if (results != NULL){
-            //Calls upon compareSpotifyData to compare the user to another user
-            spotifyComp = [self compareSpotifyData:potentialMatch withData:results];
-        }
-        [matches setObject:[NSNumber numberWithDouble:spotifyComp] forKey:potentialMatch.objectId];
-    }];
+    }
+    //Saves matches to Database
+    potentialMatch[@"matches"] = matches;
+    [potentialMatch saveInBackground];
 }
 
 

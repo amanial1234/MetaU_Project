@@ -4,13 +4,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MatchingAlgorithm : NSObject
-
-@property (strong, nonatomic) NSArray *foundPosts;
+@interface MatchingAlgorithm : NSObject 
+@property (assign, nonatomic) double spotifyMatch;
 + (instancetype)shared;
-+ (void) lookForMatches;
-+ (void) compare:(PFObject *)potentialMatch withDictionary:(NSMutableDictionary *)matches withData:(NSManagedObject *)data;
-+ (double) compareSpotifyData:(PFObject *)potentialMatch withData:(NSManagedObject *)userSpotify;
+- (void) lookForMatches;
+- (void) compareSpotifyData:(PFObject *)potentialMatch withData:(NSManagedObject *)userSpotify;
 
 @end
 
