@@ -8,7 +8,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) double spotifyMatch;
 + (instancetype)shared;
 - (void) lookForMatches;
+<<<<<<< Updated upstream
 - (void) compareSpotifyData:(PFObject *)potentialMatch withData:(NSManagedObject *)userSpotify;
+=======
+>>>>>>> Stashed changes
 
 @end
 

@@ -173,8 +173,8 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
         if (!error){
             PFUser *current = [PFUser currentUser];
             NSString *name = userDict[@"display_name"];
-            NSArray *image= userDict[@"images"];
-            NSDictionary *imageDict = [image objectAtIndex:0];
+            NSArray *images = userDict[@"images"];
+            NSDictionary *imageDict = [images objectAtIndex:0];
             if (!imageDict == nil){
                 [User user].name = [NSString stringWithFormat: name, nil];
                 NSString * url =[NSString stringWithFormat:imageDict[@"url"], nil];

@@ -3,7 +3,6 @@
 #import "User.h"
 
 @interface ProfileViewController () 
-//connects objects: Screenname and profileview
 @property (weak, nonatomic) IBOutlet UILabel *screenName;
 @property (weak, nonatomic) IBOutlet UIImageView *profileView;
 
@@ -14,10 +13,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //Sets username
     self.screenName.text = [[User user] name];
-    //Gets image Url
     NSString *URLString = [[User user] profilePicture];
+    //Removes the string "normal" from url to be able to use the URL
     NSString *stringWithoutNormal = [URLString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
     NSURL *urlNew = [NSURL URLWithString:stringWithoutNormal];
     [self.profileView setImageWithURL: urlNew];

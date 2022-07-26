@@ -29,7 +29,7 @@
     self.MatchTableView.rowHeight = 540;
     MatchCell *cell = [_MatchTableView dequeueReusableCellWithIdentifier:@"MatchCell"];
     [self.view bringSubviewToFront:cell.matchName];
-    [MatchingAlgorithm lookForMatches];
+    [[MatchingAlgorithm shared] lookForMatches];
 }
     
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
