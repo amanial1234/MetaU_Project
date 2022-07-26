@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		455B2EDD2877AAB900524595 /* SpotifyiOS.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 455B2EDC2877AAB900524595 /* SpotifyiOS.xcframework */; };
+		455B2EE32878B85D00524595 /* ConnectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 455B2EE22878B85D00524595 /* ConnectView.m */; };
+		455B2EE62878B89B00524595 /* ConnectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 455B2EE52878B89B00524595 /* ConnectButton.m */; };
+		4578A3E22876323800EB96A0 /* SpotifyAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4578A3E12876323800EB96A0 /* SpotifyAPIManager.m */; };
+		4578A3E52876525A00EB96A0 /* MatchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4578A3E42876525A00EB96A0 /* MatchCell.m */; };
 		459577892874F04300D566DE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 459577882874F04300D566DE /* AppDelegate.m */; };
 		4595778C2874F04300D566DE /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4595778B2874F04300D566DE /* SceneDelegate.m */; };
-		4595778F2874F04300D566DE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4595778E2874F04300D566DE /* ViewController.m */; };
 		459577922874F04300D566DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 459577902874F04300D566DE /* Main.storyboard */; };
 		459577942874F04500D566DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 459577932874F04500D566DE /* Assets.xcassets */; };
 		459577972874F04500D566DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 459577952874F04500D566DE /* LaunchScreen.storyboard */; };
@@ -17,6 +21,15 @@
 		459577A42874F04500D566DE /* MusicTasteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 459577A32874F04500D566DE /* MusicTasteTests.m */; };
 		459577AE2874F04500D566DE /* MusicTasteUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 459577AD2874F04500D566DE /* MusicTasteUITests.m */; };
 		459577B02874F04500D566DE /* MusicTasteUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 459577AF2874F04500D566DE /* MusicTasteUITestsLaunchTests.m */; };
+		459577BE28760D8900D566DE /* ConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 459577BD28760D8900D566DE /* ConnectViewController.m */; };
+		459577C128760D9A00D566DE /* MatchmakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 459577C028760D9A00D566DE /* MatchmakingViewController.m */; };
+		459577C428760DB800D566DE /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 459577C328760DB800D566DE /* ProfileViewController.m */; };
+		45B0EA52287EF86E00C4ABD2 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B0EA51287EF86E00C4ABD2 /* LoginViewController.m */; };
+		45FDD0532881B55F003483A5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FDD0522881B55F003483A5 /* User.m */; };
+		45FDD0562885E0C1003483A5 /* MatchingAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FDD0552885E0C1003483A5 /* MatchingAlgorithm.m */; };
+		5302006FE955DF688B280E5A /* Pods_MusicTasteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD6761B3501A7DCBBD555BF1 /* Pods_MusicTasteTests.framework */; };
+		68836B6E5AD463096802F15E /* Pods_MusicTaste.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3AC11E3EF09D70605DD95D2 /* Pods_MusicTaste.framework */; };
+		7EA3B509A988087A8718BFAE /* Pods_MusicTasteUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04285ABD86E27BB8B7A101AC /* Pods_MusicTasteUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,13 +50,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04285ABD86E27BB8B7A101AC /* Pods_MusicTasteUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicTasteUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		047EF19126B25DCAA859E7C6 /* Pods-MusicTasteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicTasteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicTasteTests/Pods-MusicTasteTests.release.xcconfig"; sourceTree = "<group>"; };
+		455B2EDC2877AAB900524595 /* SpotifyiOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SpotifyiOS.xcframework; sourceTree = "<group>"; };
+		455B2EE12878B85D00524595 /* ConnectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectView.h; sourceTree = "<group>"; };
+		455B2EE22878B85D00524595 /* ConnectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectView.m; sourceTree = "<group>"; };
+		455B2EE42878B89B00524595 /* ConnectButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectButton.h; sourceTree = "<group>"; };
+		455B2EE52878B89B00524595 /* ConnectButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectButton.m; sourceTree = "<group>"; };
+		4578A3E02876323800EB96A0 /* SpotifyAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpotifyAPIManager.h; sourceTree = "<group>"; };
+		4578A3E12876323800EB96A0 /* SpotifyAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpotifyAPIManager.m; sourceTree = "<group>"; };
+		4578A3E32876525A00EB96A0 /* MatchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchCell.h; sourceTree = "<group>"; };
+		4578A3E42876525A00EB96A0 /* MatchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchCell.m; sourceTree = "<group>"; };
 		459577842874F04300D566DE /* MusicTaste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicTaste.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		459577872874F04300D566DE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		459577882874F04300D566DE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4595778A2874F04300D566DE /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		4595778B2874F04300D566DE /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		4595778D2874F04300D566DE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		4595778E2874F04300D566DE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		459577912874F04300D566DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		459577932874F04500D566DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		459577962874F04500D566DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,6 +76,25 @@
 		459577A92874F04500D566DE /* MusicTasteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicTasteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		459577AD2874F04500D566DE /* MusicTasteUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicTasteUITests.m; sourceTree = "<group>"; };
 		459577AF2874F04500D566DE /* MusicTasteUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicTasteUITestsLaunchTests.m; sourceTree = "<group>"; };
+		459577BC28760D8900D566DE /* ConnectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectViewController.h; sourceTree = "<group>"; };
+		459577BD28760D8900D566DE /* ConnectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectViewController.m; sourceTree = "<group>"; };
+		459577BF28760D9A00D566DE /* MatchmakingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchmakingViewController.h; sourceTree = "<group>"; };
+		459577C028760D9A00D566DE /* MatchmakingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchmakingViewController.m; sourceTree = "<group>"; };
+		459577C228760DB800D566DE /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		459577C328760DB800D566DE /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		45B0EA50287EF86E00C4ABD2 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		45B0EA51287EF86E00C4ABD2 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		45FDD0512881B55F003483A5 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		45FDD0522881B55F003483A5 /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		45FDD0542885E0C1003483A5 /* MatchingAlgorithm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchingAlgorithm.h; sourceTree = "<group>"; };
+		45FDD0552885E0C1003483A5 /* MatchingAlgorithm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchingAlgorithm.m; sourceTree = "<group>"; };
+		72591BDFFA3BFA9B3F91603D /* Pods-MusicTaste.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicTaste.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicTaste/Pods-MusicTaste.release.xcconfig"; sourceTree = "<group>"; };
+		7BCEEB28C3CCC4CE38BF9D3D /* Pods-MusicTaste.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicTaste.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicTaste/Pods-MusicTaste.debug.xcconfig"; sourceTree = "<group>"; };
+		AFB78AFA4A4E6C836384A772 /* Pods-MusicTasteUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicTasteUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicTasteUITests/Pods-MusicTasteUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B6E134AEED0782CD067C574F /* Pods-MusicTasteUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicTasteUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicTasteUITests/Pods-MusicTasteUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		DD6761B3501A7DCBBD555BF1 /* Pods_MusicTasteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicTasteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3AC11E3EF09D70605DD95D2 /* Pods_MusicTaste.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicTaste.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E55D3F626A9C1C281E979808 /* Pods-MusicTasteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicTasteTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicTasteTests/Pods-MusicTasteTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +102,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				455B2EDD2877AAB900524595 /* SpotifyiOS.xcframework in Frameworks */,
+				68836B6E5AD463096802F15E /* Pods_MusicTaste.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5302006FE955DF688B280E5A /* Pods_MusicTasteTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,12 +119,67 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EA3B509A988087A8718BFAE /* Pods_MusicTasteUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F7E0F50F3E00043CB3D0633 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7BCEEB28C3CCC4CE38BF9D3D /* Pods-MusicTaste.debug.xcconfig */,
+				72591BDFFA3BFA9B3F91603D /* Pods-MusicTaste.release.xcconfig */,
+				E55D3F626A9C1C281E979808 /* Pods-MusicTasteTests.debug.xcconfig */,
+				047EF19126B25DCAA859E7C6 /* Pods-MusicTasteTests.release.xcconfig */,
+				B6E134AEED0782CD067C574F /* Pods-MusicTasteUITests.debug.xcconfig */,
+				AFB78AFA4A4E6C836384A772 /* Pods-MusicTasteUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		26FE249CEACF8A3C9D531490 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				455B2EDC2877AAB900524595 /* SpotifyiOS.xcframework */,
+				E3AC11E3EF09D70605DD95D2 /* Pods_MusicTaste.framework */,
+				DD6761B3501A7DCBBD555BF1 /* Pods_MusicTasteTests.framework */,
+				04285ABD86E27BB8B7A101AC /* Pods_MusicTasteUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		455B2EE02878B7B500524595 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				459577BC28760D8900D566DE /* ConnectViewController.h */,
+				459577BD28760D8900D566DE /* ConnectViewController.m */,
+				45B0EA50287EF86E00C4ABD2 /* LoginViewController.h */,
+				45B0EA51287EF86E00C4ABD2 /* LoginViewController.m */,
+				45B0EA53287EFA5C00C4ABD2 /* Button */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		4578A3E62876526C00EB96A0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4578A3E42876525A00EB96A0 /* MatchCell.m */,
+				4578A3E32876525A00EB96A0 /* MatchCell.h */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		4578A3E72876527B00EB96A0 /* APIManagers */ = {
+			isa = PBXGroup;
+			children = (
+				4578A3E12876323800EB96A0 /* SpotifyAPIManager.m */,
+				4578A3E02876323800EB96A0 /* SpotifyAPIManager.h */,
+			);
+			path = APIManagers;
+			sourceTree = "<group>";
+		};
 		4595777B2874F04300D566DE = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +187,8 @@
 				459577A22874F04500D566DE /* MusicTasteTests */,
 				459577AC2874F04500D566DE /* MusicTasteUITests */,
 				459577852874F04300D566DE /* Products */,
+				0F7E0F50F3E00043CB3D0633 /* Pods */,
+				26FE249CEACF8A3C9D531490 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,12 +205,17 @@
 		459577862874F04300D566DE /* MusicTaste */ = {
 			isa = PBXGroup;
 			children = (
+				45FDD0522881B55F003483A5 /* User.m */,
+				45FDD0512881B55F003483A5 /* User.h */,
+				45FDD0552885E0C1003483A5 /* MatchingAlgorithm.m */,
+				45FDD0542885E0C1003483A5 /* MatchingAlgorithm.h */,
+				4578A3E62876526C00EB96A0 /* Cells */,
+				4578A3E72876527B00EB96A0 /* APIManagers */,
+				459577C528760DBF00D566DE /* View Controllers */,
 				459577872874F04300D566DE /* AppDelegate.h */,
 				459577882874F04300D566DE /* AppDelegate.m */,
 				4595778A2874F04300D566DE /* SceneDelegate.h */,
 				4595778B2874F04300D566DE /* SceneDelegate.m */,
-				4595778D2874F04300D566DE /* ViewController.h */,
-				4595778E2874F04300D566DE /* ViewController.m */,
 				459577902874F04300D566DE /* Main.storyboard */,
 				459577932874F04500D566DE /* Assets.xcassets */,
 				459577952874F04500D566DE /* LaunchScreen.storyboard */,
@@ -136,6 +242,29 @@
 			path = MusicTasteUITests;
 			sourceTree = "<group>";
 		};
+		459577C528760DBF00D566DE /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				455B2EE02878B7B500524595 /* Login */,
+				459577BF28760D9A00D566DE /* MatchmakingViewController.h */,
+				459577C028760D9A00D566DE /* MatchmakingViewController.m */,
+				459577C228760DB800D566DE /* ProfileViewController.h */,
+				459577C328760DB800D566DE /* ProfileViewController.m */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		45B0EA53287EFA5C00C4ABD2 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				455B2EE12878B85D00524595 /* ConnectView.h */,
+				455B2EE22878B85D00524595 /* ConnectView.m */,
+				455B2EE42878B89B00524595 /* ConnectButton.h */,
+				455B2EE52878B89B00524595 /* ConnectButton.m */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,9 +272,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 459577B32874F04500D566DE /* Build configuration list for PBXNativeTarget "MusicTaste" */;
 			buildPhases = (
+				6DBD3F396AB61C1DE9ABD840 /* [CP] Check Pods Manifest.lock */,
 				459577802874F04300D566DE /* Sources */,
 				459577812874F04300D566DE /* Frameworks */,
 				459577822874F04300D566DE /* Resources */,
+				0D7832A27C28FE383ADCA899 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -160,6 +291,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 459577B62874F04500D566DE /* Build configuration list for PBXNativeTarget "MusicTasteTests" */;
 			buildPhases = (
+				D31313425666CA1FD2F10596 /* [CP] Check Pods Manifest.lock */,
 				4595779B2874F04500D566DE /* Sources */,
 				4595779C2874F04500D566DE /* Frameworks */,
 				4595779D2874F04500D566DE /* Resources */,
@@ -178,6 +310,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 459577B92874F04500D566DE /* Build configuration list for PBXNativeTarget "MusicTasteUITests" */;
 			buildPhases = (
+				394405792D72092222451405 /* [CP] Check Pods Manifest.lock */,
 				459577A52874F04500D566DE /* Sources */,
 				459577A62874F04500D566DE /* Frameworks */,
 				459577A72874F04500D566DE /* Resources */,
@@ -198,7 +331,6 @@
 		4595777C2874F04300D566DE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					459577832874F04300D566DE = {
@@ -261,15 +393,107 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0D7832A27C28FE383ADCA899 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MusicTaste/Pods-MusicTaste-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/GMImagePicker/GMImagePicker.framework",
+				"${BUILT_PRODUCTS_DIR}/HTPressableButton/HTPressableButton.framework",
+				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GMImagePicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HTPressableButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MusicTaste/Pods-MusicTaste-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		394405792D72092222451405 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MusicTasteUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6DBD3F396AB61C1DE9ABD840 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MusicTaste-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D31313425666CA1FD2F10596 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MusicTasteTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		459577802874F04300D566DE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4595778F2874F04300D566DE /* ViewController.m in Sources */,
+				455B2EE62878B89B00524595 /* ConnectButton.m in Sources */,
+				4578A3E22876323800EB96A0 /* SpotifyAPIManager.m in Sources */,
 				459577892874F04300D566DE /* AppDelegate.m in Sources */,
+				45FDD0562885E0C1003483A5 /* MatchingAlgorithm.m in Sources */,
 				4595779A2874F04500D566DE /* main.m in Sources */,
+				4578A3E52876525A00EB96A0 /* MatchCell.m in Sources */,
 				4595778C2874F04300D566DE /* SceneDelegate.m in Sources */,
+				459577C428760DB800D566DE /* ProfileViewController.m in Sources */,
+				459577BE28760D8900D566DE /* ConnectViewController.m in Sources */,
+				45FDD0532881B55F003483A5 /* User.m in Sources */,
+				455B2EE32878B85D00524595 /* ConnectView.m in Sources */,
+				45B0EA52287EF86E00C4ABD2 /* LoginViewController.m in Sources */,
+				459577C128760D9A00D566DE /* MatchmakingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +603,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -430,6 +655,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -437,12 +663,17 @@
 		};
 		459577B42874F04500D566DE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BCEEB28C3CCC4CE38BF9D3D /* Pods-MusicTaste.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 78JW727S8R;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MusicTaste/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -464,12 +695,17 @@
 		};
 		459577B52874F04500D566DE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72591BDFFA3BFA9B3F91603D /* Pods-MusicTaste.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 78JW727S8R;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MusicTaste/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -491,6 +727,7 @@
 		};
 		459577B72874F04500D566DE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E55D3F626A9C1C281E979808 /* Pods-MusicTasteTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -509,6 +746,7 @@
 		};
 		459577B82874F04500D566DE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 047EF19126B25DCAA859E7C6 /* Pods-MusicTasteTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -527,6 +765,7 @@
 		};
 		459577BA2874F04500D566DE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6E134AEED0782CD067C574F /* Pods-MusicTasteUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -543,6 +782,7 @@
 		};
 		459577BB2874F04500D566DE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AFB78AFA4A4E6C836384A772 /* Pods-MusicTasteUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

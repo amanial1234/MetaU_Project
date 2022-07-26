@@ -28,18 +28,18 @@ This app is designed to be a matchmaking app for individuals with similar music 
 
 **Required**
 
-*Gesture on cell (left or right)  
-*Algorithm(artists, music genre, and songs)
-*Matchmaking View
-*Login View
-*Profile View
+* Gesture on cell (left or right)  
+* Algorithm(artists, music genre, and songs)
+* Matchmaking View
+* Login View
+* Profile View
 
 
 **Stretch**
 
-*Other variables in algorithm (bpm, friends music taste, dance ability) 
-*Messaging(details View)
-*Details View
+* Other variables in algorithm (bpm, friends music taste, dance ability) 
+* Messaging(details View)
+* Details View
 
 
 ### 2. Screen Archetypes

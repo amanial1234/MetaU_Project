@@ -1,1 +1,6 @@
 .DS_Store
+*.xcworkspace
+xcuserdata
+build/*
+*~.nib
+*.swp
