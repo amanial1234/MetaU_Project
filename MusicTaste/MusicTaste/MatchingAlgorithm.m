@@ -34,18 +34,9 @@
 }
 
 - (void) compareSpotifyData:(PFObject *)potentialMatch withData:(NSManagedObject*)userSpotify{
-<<<<<<< Updated upstream
-    PFQuery *query = [PFQuery queryWithClassName:@"Music"];
-    PFUser *current = [PFUser currentUser];
     //Makes sure the we are collecting information from the current user
     self.spotifyMatch = 0.0;
     NSMutableArray *matches = [NSMutableArray array];
-            double spotifyMatch = 0.0;
-=======
-    //Makes sure the we are collecting information from the current user
-    self.spotifyMatch = 0.0;
-    NSMutableArray *matches = [NSMutableArray array];
->>>>>>> Stashed changes
     for (NSManagedObject *matchData in userSpotify){
         if (potentialMatch != NULL){
             if (![potentialMatch.objectId isEqual:[matchData valueForKey:@"objectId"]]){
@@ -80,7 +71,6 @@
                     //To avoid dividing by zero if any of the counts are zero we make the Spotify match automatically 1
                     self.spotifyMatch = 1;
                 }else{
-<<<<<<< Updated upstream
                 self.spotifyMatch = (((newGenreCount/genreCount)*0.2) + ((newTrackCount/trackCount)*0.3) + ((newAlbumCount/albumCount)*0.2) + ((newArtistCount/artistCount)*0.3));
                 }
                 [matchesDict setObject:[NSNumber numberWithDouble:self.spotifyMatch] forKey:[matchData valueForKey:@"objectId"]];
@@ -89,20 +79,7 @@
             }
     }
     //Saves matches to Database
-=======
-                    self.spotifyMatch = (((newGenreCount/genreCount)*0.2) + ((newTrackCount/trackCount)*0.3) + ((newAlbumCount/albumCount)*0.2) + ((newArtistCount/artistCount)*0.3));
-                }
-                [matchesDict setObject:[NSNumber numberWithDouble:self.spotifyMatch] forKey:[matchData valueForKey:@"objectId"]];
-                [matches addObject:matchesDict];
-            }
-        }
-    }
-    //Saves matches to Database
-    NSLog(@"Match: %@", matches);
->>>>>>> Stashed changes
     potentialMatch[@"matches"] = matches;
     [potentialMatch saveInBackground];
 }
-
-
 @end
