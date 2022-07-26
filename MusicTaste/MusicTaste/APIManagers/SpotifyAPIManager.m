@@ -100,6 +100,7 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
         }
         else {
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             completion(dataDictionary, nil);
         }
     }];
