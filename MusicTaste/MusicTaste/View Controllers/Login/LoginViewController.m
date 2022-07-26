@@ -1,7 +1,6 @@
 
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
-#import "UIColor+HTColor.h"
 #import "SpotifyAPIManager.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
