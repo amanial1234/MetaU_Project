@@ -36,11 +36,11 @@
 - (void) compareSpotifyData:(PFObject *)potentialMatch withData:(NSManagedObject*)userSpotify{
     //Makes sure the we are collecting information from the current user
     self.spotifyMatch = 0.0;
-    NSMutableArray *matches = [NSMutableArray array];
+    NSMutableArray *matchArray = [NSMutableArray array];
     for (NSManagedObject *matchData in userSpotify){
         if (potentialMatch != NULL){
             if (![potentialMatch.objectId isEqual:[matchData valueForKey:@"objectId"]]){
-                NSMutableDictionary *matchesDict = [NSMutableDictionary dictionary];
+                NSMutableDictionary *matchDict = [NSMutableDictionary dictionary];
                 //Calls the genres,tracks, albums, and artists from the database
                 NSMutableArray *matchDataGenres = [matchData valueForKey:@"genres"];
                 NSMutableArray *matchDataTracks = [matchData valueForKey:@"tracks"];
@@ -73,13 +73,20 @@
                 }else{
                 self.spotifyMatch = (((newGenreCount/genreCount)*0.2) + ((newTrackCount/trackCount)*0.3) + ((newAlbumCount/albumCount)*0.2) + ((newArtistCount/artistCount)*0.3));
                 }
-                [matchesDict setObject:[NSNumber numberWithDouble:self.spotifyMatch] forKey:[matchData valueForKey:@"objectId"]];
-                [matches addObject:matchesDict];
+                [matchDict setObject:[NSNumber numberWithDouble:self.spotifyMatch] forKey:[matchData valueForKey:@"objectId"]];
+                [matchArray addObject:matchDict];
                 }
             }
     }
+    //combines dictionary into one dictionary of all the matches
+    NSMutableDictionary *matchesDict = [NSMutableDictionary dictionary];
+    for(NSDictionary *match in matchArray){
+        [matchesDict addEntriesFromDictionary: match];
+    }
     //Saves matches to Database
-    potentialMatch[@"matches"] = matches;
+    NSMutableArray *matchesArray = [NSMutableArray array];
+    [matchesArray addObject:matchesDict];
+    potentialMatch[@"matches"] = matchesArray;
     [potentialMatch saveInBackground];
 }
 @end

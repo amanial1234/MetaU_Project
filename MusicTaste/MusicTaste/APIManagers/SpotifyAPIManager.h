@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_END
 @property (nonatomic, strong) NSString *token;
 @property (nonatomic, strong) User *user;// Contains Users author's name, screenname, and profile image.
 @property (weak) IBOutlet UIWindow *window;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *profilePicture;
 
 
 - (void) setUpSpotifyWithCompletion:(void (^)(NSDictionary *, NSError*))completion;

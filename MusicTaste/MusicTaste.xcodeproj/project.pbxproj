@@ -165,6 +165,8 @@
 		4578A3E62876526C00EB96A0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				45FDD0522881B55F003483A5 /* User.m */,
+				45FDD0512881B55F003483A5 /* User.h */,
 				4578A3E42876525A00EB96A0 /* MatchCell.m */,
 				4578A3E32876525A00EB96A0 /* MatchCell.h */,
 			);
@@ -205,8 +207,6 @@
 		459577862874F04300D566DE /* MusicTaste */ = {
 			isa = PBXGroup;
 			children = (
-				45FDD0522881B55F003483A5 /* User.m */,
-				45FDD0512881B55F003483A5 /* User.h */,
 				45FDD0552885E0C1003483A5 /* MatchingAlgorithm.m */,
 				45FDD0542885E0C1003483A5 /* MatchingAlgorithm.h */,
 				4578A3E62876526C00EB96A0 /* Cells */,

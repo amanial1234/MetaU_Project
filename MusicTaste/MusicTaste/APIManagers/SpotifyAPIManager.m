@@ -7,7 +7,9 @@
 #import "dispatch/dispatch.h"
 #import "User.h"
 
+
 @implementation SpotifyAPIManager
+
 
 #pragma mark - Shared
 + (instancetype)shared {
@@ -52,8 +54,8 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
     [self getSpotifyTracksArtists:^(NSDictionary *dict, NSError *error) {
         if (!error){
             //Gets Access Token and save user's Spotify Track Artists data
-            [self saveSpotifyData:dict];
             [self saveSpotifyUserData:dict];
+            [self saveSpotifyData:dict];
         }
     }];
 }
@@ -162,6 +164,8 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
             music[@"artists"] = [NSArray arrayWithArray:spotifyData[@"artists"]];
             music[@"albums"] = [NSArray arrayWithArray:spotifyData[@"albums"]];
             music[@"images"] = [NSArray arrayWithArray:spotifyData[@"images"]];
+            music[@"userimage"] = self.profilePicture;
+            music[@"username"] = self.name;
             [music saveEventually];
         }
     }];
@@ -179,6 +183,8 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
                 [User user].name = [NSString stringWithFormat: name, nil];
                 NSString * url =[NSString stringWithFormat:imageDict[@"url"], nil];
                 [User user].profilePicture = url;
+                self.name = [NSString stringWithFormat: name, nil];
+                self.profilePicture = url;
             }
         }
     }];
