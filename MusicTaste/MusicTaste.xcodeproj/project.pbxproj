@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4507AF44289465CC00DF3D8E /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4507AF43289465CC00DF3D8E /* DetailsViewController.m */; };
 		455B2EDD2877AAB900524595 /* SpotifyiOS.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 455B2EDC2877AAB900524595 /* SpotifyiOS.xcframework */; };
 		455B2EE32878B85D00524595 /* ConnectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 455B2EE22878B85D00524595 /* ConnectView.m */; };
 		455B2EE62878B89B00524595 /* ConnectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 455B2EE52878B89B00524595 /* ConnectButton.m */; };
@@ -52,6 +53,8 @@
 /* Begin PBXFileReference section */
 		04285ABD86E27BB8B7A101AC /* Pods_MusicTasteUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicTasteUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		047EF19126B25DCAA859E7C6 /* Pods-MusicTasteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicTasteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicTasteTests/Pods-MusicTasteTests.release.xcconfig"; sourceTree = "<group>"; };
+		4507AF42289465CC00DF3D8E /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
+		4507AF43289465CC00DF3D8E /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		455B2EDC2877AAB900524595 /* SpotifyiOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SpotifyiOS.xcframework; sourceTree = "<group>"; };
 		455B2EE12878B85D00524595 /* ConnectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectView.h; sourceTree = "<group>"; };
 		455B2EE22878B85D00524595 /* ConnectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectView.m; sourceTree = "<group>"; };
@@ -250,6 +253,8 @@
 				459577C028760D9A00D566DE /* MatchmakingViewController.m */,
 				459577C228760DB800D566DE /* ProfileViewController.h */,
 				459577C328760DB800D566DE /* ProfileViewController.m */,
+				4507AF42289465CC00DF3D8E /* DetailsViewController.h */,
+				4507AF43289465CC00DF3D8E /* DetailsViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -492,6 +497,7 @@
 				459577BE28760D8900D566DE /* ConnectViewController.m in Sources */,
 				45FDD0532881B55F003483A5 /* User.m in Sources */,
 				455B2EE32878B85D00524595 /* ConnectView.m in Sources */,
+				4507AF44289465CC00DF3D8E /* DetailsViewController.m in Sources */,
 				45B0EA52287EF86E00C4ABD2 /* LoginViewController.m in Sources */,
 				459577C128760D9A00D566DE /* MatchmakingViewController.m in Sources */,
 			);
@@ -770,6 +776,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 78JW727S8R;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amanial.MusicTasteUITests;
@@ -787,6 +797,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 78JW727S8R;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amanial.MusicTasteUITests;
