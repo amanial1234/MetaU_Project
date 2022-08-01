@@ -400,7 +400,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iol-Pf-Zo1" userLabel="Drag Area View">
-                                <rect key="frame" x="10" y="338" width="394" height="475"/>
+                                <rect key="frame" x="10" y="338" width="394" height="504"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K1z-0w-tLa" userLabel="Drag View">
                                         <rect key="frame" x="140" y="55" width="100" height="100"/>
@@ -415,7 +415,7 @@
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ICt-91-qUa" userLabel="Reject View">
-                                        <rect key="frame" x="220" y="281" width="152" height="149"/>
+                                        <rect key="frame" x="220" y="310" width="152" height="149"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVs-bJ-L68">
                                                 <rect key="frame" x="0.0" y="64" width="152" height="21"/>
@@ -434,7 +434,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bb5-R9-GxM" userLabel="Accept View">
-                                        <rect key="frame" x="16" y="282" width="143" height="148"/>
+                                        <rect key="frame" x="16" y="311" width="143" height="148"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lcm-fQ-Jm1">
                                                 <rect key="frame" x="4" y="64" width="135" height="21"/>
@@ -487,6 +487,7 @@
                         <outlet property="rejectLabel" destination="bVs-bJ-L68" id="7gw-Zx-89d"/>
                         <outlet property="rejectView" destination="ICt-91-qUa" id="VPv-gs-QoY"/>
                         <outlet property="screenName" destination="Pmo-YL-2ad" id="J8w-SL-8Bi"/>
+                        <segue destination="Ow7-qW-Cge" kind="presentation" identifier="matchingSegue" id="UHw-03-y2d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xlw-fC-8gk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -496,7 +497,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3985.507246376812" y="-421.20535714285711"/>
+            <point key="canvasLocation" x="4061" y="-421"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="oVc-4a-vPN">
@@ -556,6 +557,9 @@
             <point key="canvasLocation" x="2113" y="-421"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="UHw-03-y2d"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="person" catalog="system" width="128" height="117"/>

@@ -12,7 +12,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //Set Username, Image, and Bio
     self.screenName.text = [self.author valueForKey:@"username"];
+    
+    
+    //Sets intial constraints on views
     self.lastBounds = self.view.bounds;
     
     self.dragView.layer.cornerRadius = self.dragView.bounds.size.height / 2;
@@ -40,7 +44,7 @@
 
 - (void)boundsChanged {
     [self returnToStartLocationAnimated:NO];
-    
+    //makes sure the Views are above the DragAreaView
     [self.dragAreaView bringSubviewToFront:self.dragView];
     [self.dragAreaView bringSubviewToFront:self.acceptView];
     [self.dragAreaView bringSubviewToFront:self.rejectView];
@@ -51,21 +55,19 @@
 
 #pragma mark - Actions
 
-- (IBAction)dismissAction {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (IBAction)panAction:(id)sender {
     if (self.panGesture.state == UIGestureRecognizerStateChanged) {
         [self moveObject];
     }
     else if (self.panGesture.state == UIGestureRecognizerStateEnded) {
         if (self.isAcceptReached) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
             if (self.completion) {
                 self.completion();
             }
         }
         if (self.isRejectReached) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
             if (self.completion) {
                 self.completion();
             }
@@ -76,9 +78,10 @@
     }
 }
 
-#pragma mark - UI updates
+
 
 - (void)moveObject {
+    // Algorithm to move view using constraints
     CGFloat minX = DRAG_AREA_PADDING;
     CGFloat maxX = self.dragAreaView.bounds.size.width - self.dragView.bounds.size.width - DRAG_AREA_PADDING;
     
@@ -125,28 +128,30 @@
     
     [self updateAcceptView];
     [self updateRejectView];
+    
 }
 
 - (void)updateAcceptView {
+    //Updates the Accept view to a green if it is reached and changes text
     UIColor *goalColor = self.isAcceptReached ? [UIColor greenColor] : [UIColor colorWithRed:174/255.0 green:0 blue:0 alpha:1];
     
     self.acceptView.layer.borderColor = goalColor.CGColor;
     
     self.acceptLabel.textColor = goalColor;
     self.acceptLabel.text = self.isAcceptReached ? @"Accepted!" : @"Accept!";
-    //Transition
 }
 - (void)updateRejectView {
+    //Updates the Reject view to a brighter red if it is reached and changes text
     UIColor *goalColor = self.isRejectReached ? [UIColor redColor] : [UIColor colorWithRed:174/255.0 green:0 blue:0 alpha:1];
     
     self.rejectView.layer.borderColor = goalColor.CGColor;
     
     self.rejectLabel.textColor = goalColor;
     self.rejectLabel.text = self.isRejectReached ? @"Rejected!" : @"Reject!";
-    //Transition
 }
 
 - (void)returnToStartLocationAnimated:(BOOL)animated {
+    //Returns to start location if you let go and it is not in either accept or reject view
     self.dragViewX.constant = (self.dragAreaView.bounds.size.width - self.dragView.bounds.size.width) / 2;
     self.dragViewY.constant = self.initialDragViewY;
 
@@ -160,10 +165,12 @@
 #pragma mark - Getters
 
 - (BOOL)isAcceptReached {
+    //Checks if Accept is reached
     CGFloat distanceFromGoal = sqrt(pow(self.dragView.center.x - self.acceptView.center.x, 2) + pow(self.dragView.center.y - self.acceptView.center.y, 2));
     return distanceFromGoal < self.dragView.bounds.size.width / 2;
 }
 - (BOOL)isRejectReached {
+    //Checks if Reject is reached
     CGFloat distanceFromGoal = sqrt(pow(self.dragView.center.x - self.rejectView.center.x, 2) + pow(self.dragView.center.y - self.rejectView.center.y, 2));
     return distanceFromGoal < self.dragView.bounds.size.width / 2;
 }
