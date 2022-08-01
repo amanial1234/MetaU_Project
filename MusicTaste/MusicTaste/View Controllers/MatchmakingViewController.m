@@ -9,6 +9,7 @@
 #import "SceneDelegate.h"
 #import <UIKit/UIKit.h>
 #import "UIImageView+AFNetworking.h"
+#import "DetailsViewController.h"
 
 @interface MatchmakingViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *MatchTableView;
@@ -81,5 +82,14 @@
     }];
 }
 
-
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    //Segue to Details View Controller
+    if([[segue identifier] isEqualToString:@"detailsSegue"]) {
+        UITableViewCell *cell = sender;
+        NSIndexPath *indexpath = [self.MatchTableView indexPathForCell:cell];
+        DetailsViewController *detailsViewController = [segue destinationViewController];
+        PFUser *match = self.matches[indexpath.row];
+        detailsViewController.author = match;
+    }
+}
 @end
