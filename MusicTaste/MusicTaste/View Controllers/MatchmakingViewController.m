@@ -83,7 +83,7 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    //Segue to Details View COntroller
+    //Segue to Details View Controller
     if([[segue identifier] isEqualToString:@"detailsSegue"]) {
         UITableViewCell *cell = sender;
         NSIndexPath *indexpath = [self.MatchTableView indexPathForCell:cell];
