@@ -11,8 +11,9 @@ typedef void (^CompletionBlock)();
 
 @property (nonatomic, strong) PFUser *author;
 @property (weak, nonatomic) IBOutlet UILabel *screenName;
+@property (weak, nonatomic) IBOutlet UILabel *bio;
 @property (weak, nonatomic) IBOutlet UIImageView *profileView;
-
+@property (strong, nonatomic) NSMutableArray *matches;
 
 @property (weak, nonatomic) IBOutlet UIView *dragAreaView;
 @property (weak, nonatomic) IBOutlet UIView *dragView;

@@ -2,7 +2,7 @@
 
 @implementation User
 //Generate name and profile pticture
-@synthesize name,profilePicture;
+@synthesize name,profilePicture,artists;
 
 + (User *) user {
     static User *user = nil;
@@ -22,6 +22,7 @@
         //initializes name and profile picture
         name = nil;
         profilePicture = nil;
+        artists = nil;
     }
     return self;
 }
@@ -30,6 +31,7 @@
     //Encode properties such as name and the profile picture
     [encoder encodeObject:self.name forKey:@"name"];
     [encoder encodeObject:self.profilePicture forKey:@"image"];
+    [encoder encodeObject:self.profilePicture forKey:@"artists"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
@@ -37,6 +39,7 @@
         //decode name and image
         self.name = [decoder decodeObjectForKey:@"name"];
         self.profilePicture = [decoder decodeObjectForKey:@"image"];
+        self.profilePicture = [decoder decodeObjectForKey:@"artists"];
     }
     return self;
 }
