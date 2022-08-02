@@ -1,6 +1,8 @@
 #import "DetailsViewController.h"
 #import "MatchCell.h"
 #import <Parse/Parse.h>
+#import "UIImageView+AFNetworking.h"
+#import "MatchmakingViewController.h"
 
 #define DRAG_AREA_PADDING 5
 
@@ -14,16 +16,20 @@
     [super viewDidLoad];
     //Set Username, Image, and Bio
     self.screenName.text = [self.author valueForKey:@"username"];
-    
-    
+    self.bio.text = [self.author valueForKey:@"bio"];
+    NSString *URLString = [self.author valueForKey:@"userimage"];
+    NSString *stringWithoutNormal = [URLString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+    NSURL *urlNew = [NSURL URLWithString:stringWithoutNormal];
+    [self.profileView setImageWithURL: urlNew];
+    self.profileView.layer.cornerRadius = self.profileView.frame.size.height/2;
     //Sets intial constraints on views
     self.lastBounds = self.view.bounds;
     
     self.dragView.layer.cornerRadius = self.dragView.bounds.size.height / 2;
-
+    
     self.acceptView.layer.cornerRadius = self.acceptView.bounds.size.height / 2;
     self.acceptView.layer.borderWidth = 5;
-
+    
     self.rejectView.layer.cornerRadius = self.rejectView.bounds.size.height / 2;
     self.rejectView.layer.borderWidth = 5;
     
@@ -31,7 +37,6 @@
     
     [self updateAcceptView];
     [self updateRejectView];
-
     
 }
 - (void)viewDidLayoutSubviews {
@@ -48,11 +53,8 @@
     [self.dragAreaView bringSubviewToFront:self.dragView];
     [self.dragAreaView bringSubviewToFront:self.acceptView];
     [self.dragAreaView bringSubviewToFront:self.rejectView];
-    
     [self.view layoutIfNeeded];
-
 }
-
 #pragma mark - Actions
 
 - (IBAction)panAction:(id)sender {
@@ -61,24 +63,27 @@
     }
     else if (self.panGesture.state == UIGestureRecognizerStateEnded) {
         if (self.isAcceptReached) {
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            //Removes user from matches array and segues to MatchmakingViewController
+            [self performSegueWithIdentifier:@"backSegue" sender:nil];
+            [self.matches removeObject:self.author];
             if (self.completion) {
                 self.completion();
             }
         }
         if (self.isRejectReached) {
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            //Removes user from matches array and segues to MatchmakingViewController
+            [self performSegueWithIdentifier:@"backSegue" sender:nil];
+            [self.matches removeObject:self.author];
             if (self.completion) {
                 self.completion();
             }
         }
         else {
+            //If neither views are reached send the view back to its intial location
             [self returnToStartLocationAnimated:YES];
         }
     }
 }
-
-
 
 - (void)moveObject {
     // Algorithm to move view using constraints
@@ -116,7 +121,6 @@
     else {
         translation.y = 0;
     }
-    
     self.dragViewX.constant = dragViewX;
     self.dragViewY.constant = dragViewY;
     
@@ -128,24 +132,19 @@
     
     [self updateAcceptView];
     [self updateRejectView];
-    
 }
 
 - (void)updateAcceptView {
     //Updates the Accept view to a green if it is reached and changes text
     UIColor *goalColor = self.isAcceptReached ? [UIColor greenColor] : [UIColor colorWithRed:174/255.0 green:0 blue:0 alpha:1];
-    
     self.acceptView.layer.borderColor = goalColor.CGColor;
-    
     self.acceptLabel.textColor = goalColor;
     self.acceptLabel.text = self.isAcceptReached ? @"Accepted!" : @"Accept!";
 }
 - (void)updateRejectView {
     //Updates the Reject view to a brighter red if it is reached and changes text
     UIColor *goalColor = self.isRejectReached ? [UIColor redColor] : [UIColor colorWithRed:174/255.0 green:0 blue:0 alpha:1];
-    
     self.rejectView.layer.borderColor = goalColor.CGColor;
-    
     self.rejectLabel.textColor = goalColor;
     self.rejectLabel.text = self.isRejectReached ? @"Rejected!" : @"Reject!";
 }
@@ -154,14 +153,13 @@
     //Returns to start location if you let go and it is not in either accept or reject view
     self.dragViewX.constant = (self.dragAreaView.bounds.size.width - self.dragView.bounds.size.width) / 2;
     self.dragViewY.constant = self.initialDragViewY;
-
+    
     if (animated) {
         [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
             [self.view layoutIfNeeded];
         } completion:nil];
     }
 }
-
 #pragma mark - Getters
 
 - (BOOL)isAcceptReached {
