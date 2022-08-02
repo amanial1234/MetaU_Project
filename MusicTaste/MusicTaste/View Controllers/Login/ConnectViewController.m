@@ -16,14 +16,16 @@
     [super viewDidLoad];
 }
 #pragma mark - Actions
+-(void)viewDidAppear:(BOOL)animated{
+}
 
 - (void)didTapAuthButton:(ConnectButton *)sender
 {
     SpotifyAPIManager *api = [SpotifyAPIManager shared];
     [api setUpSpotifyWithCompletion:^(NSDictionary *data, NSError *error) {
         if (!error) {
-            //Once authorize the ConnectViewController will segue to the LoginView Controlelr
-            [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+            //Once authorize the ConnectViewController will segue to the LoginView Controller
+            [self performSegueWithIdentifier:@"tabBarSegue" sender:nil];
         }else{}
     }];
 }
