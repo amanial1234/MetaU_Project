@@ -172,10 +172,13 @@
     CGFloat distanceFromGoal = sqrt(pow(self.dragView.center.x - self.rejectView.center.x, 2) + pow(self.dragView.center.y - self.rejectView.center.y, 2));
     return distanceFromGoal < self.dragView.bounds.size.width / 2;
 }
-
-- (void)pan:(UIPanGestureRecognizer *)gesture
-{
-    NSLog(@"testing");
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([[segue identifier] isEqualToString:@"backSegue"]) {
+        UINavigationController *navigationController = [segue destinationViewController];
+        MatchmakingViewController *matchmakingController = (MatchmakingViewController*)navigationController.topViewController;
+        //Passes the matches for the matchmakingViewController
+        matchmakingController.matches = self.matches;
+    }
 }
 
 #pragma mark -

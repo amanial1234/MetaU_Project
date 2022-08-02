@@ -10,7 +10,6 @@
 
 @implementation SpotifyAPIManager
 
-
 #pragma mark - Shared
 + (instancetype)shared {
     static SpotifyAPIManager *sharedManager = nil;
@@ -20,6 +19,7 @@
     });
     return sharedManager;
 }
+
 
 //Spotify API IDs
 static NSString * const SpotifyClientID = @"9f9a8a428178497e8c58840c65d9f3c0";
@@ -37,6 +37,7 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
     SPTScope requestedScope = SPTUserLibraryReadScope | SPTPlaylistReadPrivateScope |  SPTUserTopReadScope;
     [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
     completion(nil, nil);
+    
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
@@ -56,6 +57,7 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
             //Gets Access Token and save user's Spotify Track Artists data
             [self saveSpotifyUserData:dict];
             [self saveSpotifyData:dict];
+            
         }
     }];
 }
@@ -156,18 +158,37 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
     PFUser *current = [PFUser currentUser];
     PFQuery *query = [PFQuery queryWithClassName:@"Music"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
-        if (![[results valueForKey:@"userId"]containsObject:current.objectId]){
-            //Checks if User has already been added to database before adding
-            music[@"userId"] = current.objectId;
+        [User user].artists = [NSArray arrayWithArray:spotifyData[@"images"]];
+        if (![[[results valueForKey:@"author"] valueForKey:@"objectId"] containsObject: current.objectId]){
+            music[@"author"] = current;
             music[@"genres"] = [NSArray arrayWithArray:spotifyData[@"genres"]];
             music[@"tracks"] = [NSArray arrayWithArray:spotifyData[@"tracks"]];
             music[@"artists"] = [NSArray arrayWithArray:spotifyData[@"artists"]];
             music[@"albums"] = [NSArray arrayWithArray:spotifyData[@"albums"]];
             music[@"images"] = [NSArray arrayWithArray:spotifyData[@"images"]];
-            music[@"userimage"] = self.profilePicture;
-            music[@"username"] = self.name;
+            [self getSpotifyData:@"https://api.spotify.com/v1/me" completion:^(NSDictionary * userDict, NSError * error) {
+                if (!error){
+                    PFUser *current = [PFUser currentUser];
+                    NSString *name = userDict[@"display_name"];
+                    NSArray *images = userDict[@"images"];
+                    NSDictionary *imageDict = [images objectAtIndex:0];
+                    if (imageDict != nil){
+                        NSString * url =[NSString stringWithFormat:imageDict[@"url"], nil];
+                        music[@"username"] = [NSString stringWithFormat: name, nil];
+                        music[@"userimage"] = url;
+                        [music saveEventually];
+                    }
+                }
+            }];
             [music saveEventually];
         }
+        for (PFUser *user in results){
+            if ([[[user valueForKey:@"author"] valueForKey:@"objectId"] isEqual:current.objectId] )
+                self.author = user;
+        }
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"TestNotification"
+         object:self];
     }];
 }
 
@@ -175,16 +196,13 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
     // Saves name and Profile Picture to User
     [self getSpotifyData:@"https://api.spotify.com/v1/me" completion:^(NSDictionary * userDict, NSError * error) {
         if (!error){
-            PFUser *current = [PFUser currentUser];
             NSString *name = userDict[@"display_name"];
             NSArray *images = userDict[@"images"];
             NSDictionary *imageDict = [images objectAtIndex:0];
-            if (!imageDict == nil){
+            if (imageDict != nil){
                 [User user].name = [NSString stringWithFormat: name, nil];
                 NSString * url =[NSString stringWithFormat:imageDict[@"url"], nil];
                 [User user].profilePicture = url;
-                self.name = [NSString stringWithFormat: name, nil];
-                self.profilePicture = url;
             }
         }
     }];

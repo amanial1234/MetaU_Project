@@ -3,6 +3,7 @@
 #import <Parse/Parse.h>
 #import "AppDelegate.h"
 #import "dispatch/dispatch.h"
+#import "SpotifyAPIManager.h"
 
 @implementation MatchingAlgorithm
 
@@ -21,16 +22,13 @@
     PFObject *music = [PFObject objectWithClassName:@"Music"];
     PFQuery *query = [PFQuery queryWithClassName:@"Music"];
     PFUser *current = [PFUser currentUser];
+    self.author = [SpotifyAPIManager shared].author;
     //Goes through Query
     [query findObjectsInBackgroundWithBlock:^(NSArray *spotifyData, NSError *error) {
-        for (PFObject *user in spotifyData){
-            //Calls the compare function to compare each user
-            [self compareSpotifyData:user withData:spotifyData];
-        }
+        [self compareSpotifyData:self.author withData:spotifyData];
         //sets the matches as an integer in the user's database
         [current saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {}];
     }];
-    
 }
 
 - (void) compareSpotifyData:(PFObject *)potentialMatch withData:(NSManagedObject*)userSpotify{
@@ -71,12 +69,12 @@
                     //To avoid dividing by zero if any of the counts are zero we make the Spotify match automatically 1
                     self.spotifyMatch = 1;
                 }else{
-                self.spotifyMatch = (((newGenreCount/genreCount)*0.2) + ((newTrackCount/trackCount)*0.3) + ((newAlbumCount/albumCount)*0.2) + ((newArtistCount/artistCount)*0.3));
+                    self.spotifyMatch = (((newGenreCount/genreCount)*0.2) + ((newTrackCount/trackCount)*0.3) + ((newAlbumCount/albumCount)*0.2) + ((newArtistCount/artistCount)*0.3));
                 }
                 [matchDict setObject:[NSNumber numberWithDouble:self.spotifyMatch] forKey:[matchData valueForKey:@"objectId"]];
                 [matchArray addObject:matchDict];
-                }
             }
+        }
     }
     //combines dictionary into one dictionary of all the matches
     NSMutableDictionary *matchesDict = [NSMutableDictionary dictionary];

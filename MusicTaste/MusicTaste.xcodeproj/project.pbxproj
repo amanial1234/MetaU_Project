@@ -23,9 +23,10 @@
 		459577AE2874F04500D566DE /* MusicTasteUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 459577AD2874F04500D566DE /* MusicTasteUITests.m */; };
 		459577B02874F04500D566DE /* MusicTasteUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 459577AF2874F04500D566DE /* MusicTasteUITestsLaunchTests.m */; };
 		459577BE28760D8900D566DE /* ConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 459577BD28760D8900D566DE /* ConnectViewController.m */; };
-		459577C128760D9A00D566DE /* MatchmakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 459577C028760D9A00D566DE /* MatchmakingViewController.m */; };
 		459577C428760DB800D566DE /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 459577C328760DB800D566DE /* ProfileViewController.m */; };
 		45B0EA52287EF86E00C4ABD2 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B0EA51287EF86E00C4ABD2 /* LoginViewController.m */; };
+		45B3C47F28986D9E00043E36 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B3C47E28986D9E00043E36 /* EditViewController.m */; };
+		45B3C4812898FC6000043E36 /* MatchmakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B3C4802898FC6000043E36 /* MatchmakingViewController.m */; };
 		45FDD0532881B55F003483A5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FDD0522881B55F003483A5 /* User.m */; };
 		45FDD0562885E0C1003483A5 /* MatchingAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FDD0552885E0C1003483A5 /* MatchingAlgorithm.m */; };
 		5302006FE955DF688B280E5A /* Pods_MusicTasteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD6761B3501A7DCBBD555BF1 /* Pods_MusicTasteTests.framework */; };
@@ -82,11 +83,13 @@
 		459577BC28760D8900D566DE /* ConnectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectViewController.h; sourceTree = "<group>"; };
 		459577BD28760D8900D566DE /* ConnectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectViewController.m; sourceTree = "<group>"; };
 		459577BF28760D9A00D566DE /* MatchmakingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchmakingViewController.h; sourceTree = "<group>"; };
-		459577C028760D9A00D566DE /* MatchmakingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchmakingViewController.m; sourceTree = "<group>"; };
 		459577C228760DB800D566DE /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		459577C328760DB800D566DE /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		45B0EA50287EF86E00C4ABD2 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		45B0EA51287EF86E00C4ABD2 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		45B3C47D28986D9E00043E36 /* EditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
+		45B3C47E28986D9E00043E36 /* EditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
+		45B3C4802898FC6000043E36 /* MatchmakingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchmakingViewController.m; sourceTree = "<group>"; };
 		45FDD0512881B55F003483A5 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		45FDD0522881B55F003483A5 /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		45FDD0542885E0C1003483A5 /* MatchingAlgorithm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchingAlgorithm.h; sourceTree = "<group>"; };
@@ -250,11 +253,13 @@
 			children = (
 				455B2EE02878B7B500524595 /* Login */,
 				459577BF28760D9A00D566DE /* MatchmakingViewController.h */,
-				459577C028760D9A00D566DE /* MatchmakingViewController.m */,
+				45B3C4802898FC6000043E36 /* MatchmakingViewController.m */,
 				459577C228760DB800D566DE /* ProfileViewController.h */,
 				459577C328760DB800D566DE /* ProfileViewController.m */,
 				4507AF42289465CC00DF3D8E /* DetailsViewController.h */,
 				4507AF43289465CC00DF3D8E /* DetailsViewController.m */,
+				45B3C47D28986D9E00043E36 /* EditViewController.h */,
+				45B3C47E28986D9E00043E36 /* EditViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -490,16 +495,17 @@
 				4578A3E22876323800EB96A0 /* SpotifyAPIManager.m in Sources */,
 				459577892874F04300D566DE /* AppDelegate.m in Sources */,
 				45FDD0562885E0C1003483A5 /* MatchingAlgorithm.m in Sources */,
+				45B3C47F28986D9E00043E36 /* EditViewController.m in Sources */,
 				4595779A2874F04500D566DE /* main.m in Sources */,
 				4578A3E52876525A00EB96A0 /* MatchCell.m in Sources */,
 				4595778C2874F04300D566DE /* SceneDelegate.m in Sources */,
+				45B3C4812898FC6000043E36 /* MatchmakingViewController.m in Sources */,
 				459577C428760DB800D566DE /* ProfileViewController.m in Sources */,
 				459577BE28760D8900D566DE /* ConnectViewController.m in Sources */,
 				45FDD0532881B55F003483A5 /* User.m in Sources */,
 				455B2EE32878B85D00524595 /* ConnectView.m in Sources */,
 				4507AF44289465CC00DF3D8E /* DetailsViewController.m in Sources */,
 				45B0EA52287EF86E00C4ABD2 /* LoginViewController.m in Sources */,
-				459577C128760D9A00D566DE /* MatchmakingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

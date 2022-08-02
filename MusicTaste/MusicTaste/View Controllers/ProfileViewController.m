@@ -58,4 +58,13 @@
     NSURL *urlNew = [NSURL URLWithString:stringWithoutNormal];
     return urlNew;
 }
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([[segue identifier] isEqualToString:@"editSegue"]) {
+        UINavigationController *navigationController = [segue destinationViewController];
+        EditViewController *editController = (EditViewController*)navigationController.topViewController;
+        editController.delegate = self;
+        //passes the user
+        editController.author = self.author;
+    }
+}
 @end
