@@ -174,10 +174,24 @@
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([[segue identifier] isEqualToString:@"backSegue"]) {
-        UINavigationController *navigationController = [segue destinationViewController];
-        MatchmakingViewController *matchmakingController = (MatchmakingViewController*)navigationController.topViewController;
-        //Passes the matches for the matchmakingViewController
-        matchmakingController.matches = self.matches;
+        UITabBarController *tabBar = [segue destinationViewController];
+        for (UIViewController *v in tabBar.viewControllers) {
+
+             UIViewController *vc = v;
+
+             if ([v isKindOfClass:[UINavigationController class]]) {
+                 vc = [v viewcontroller];
+             }
+
+             if ([vc isKindOfClass:[MatchmakingViewController class]]) {
+                  MatchmakingViewController *myViewController = vc;
+                  [vc doSomething];
+             }
+        }
+//        UINavigationController *navigationController = [segue destinationViewController];
+//        MatchmakingViewController *matchmakingController = (MatchmakingViewController*)navigationController.topViewController;
+//        //Passes the matches for the matchmakingViewController
+//        matchmakingController.matches = self.matches;
     }
 }
 
