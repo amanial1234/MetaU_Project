@@ -110,4 +110,14 @@
     if ([[notification name] isEqualToString:@"TestNotification"])
         NSLog (@"Successfully received the test notification!");
 }
+- (IBAction)didTapLogout:(id)sender {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        appDelegate.window.rootViewController = loginViewController;
+        [self performSegueWithIdentifier:@"MLoginSegue" sender:nil];
+    });
+}
 @end
