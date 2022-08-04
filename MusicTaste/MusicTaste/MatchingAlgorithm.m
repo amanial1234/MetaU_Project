@@ -81,9 +81,9 @@
     for(NSDictionary *match in matchArray){
         [matchesDict addEntriesFromDictionary: match];
     }
-    //Saves matches to Database
     NSMutableArray *matchesArray = [NSMutableArray array];
-    [matchesArray addObject:matchesDict];
+    matchesArray = [matchesDict keysSortedByValueUsingSelector:@selector(compare:)];
+    //Saves matches to Database
     potentialMatch[@"matches"] = matchesArray;
     [potentialMatch saveInBackground];
 }

@@ -1,9 +1,11 @@
 #import "EditViewController.h"
+#import "Parse/Parse.h"
 
 @interface EditViewController () <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *composeBio;
 @property (weak, nonatomic) IBOutlet UILabel *characterCount;
 @property (weak, nonatomic) IBOutlet UITextField *ageField;
+@property (weak, nonatomic) IBOutlet UIImageView *composeview;
 
 @end
 
@@ -28,6 +30,22 @@
     [super viewDidLoad];
     [self.composeBio becomeFirstResponder];
 }
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    PFQuery *music = [PFQuery queryWithClassName:@"Music"];
+    //gets image
+    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    self.author[@"usercustomimage"] = [self getPFFileFromImage: editedImage];
+    [self.author saveInBackground];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)selectImageFromLibrary:(id)sender {
+    //gets photo from library
+    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+    imagePickerVC.delegate = self;
+    imagePickerVC.allowsEditing = YES;
+    imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:imagePickerVC animated:YES completion:nil];
+}
 
 - (void)textViewDidChange:(UITextView *)textView {
     //character Limit
@@ -50,5 +68,15 @@
     if (substring.length < 15) {
         self.characterCount.textColor = [UIColor greenColor];
     }
+}
+- (PFFileObject *)getPFFileFromImage: (UIImage *_Nullable) image{
+    if (!image){
+        return nil;
+    }
+    NSData *imageData = UIImagePNGRepresentation(image) ;
+    if (!imageData) {
+        return nil;
+    }
+    return [PFFileObject fileObjectWithName:@"image.png" data: imageData];
 }
 @end

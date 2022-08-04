@@ -1,5 +1,6 @@
 #import <UIKit/UIKit.h>
 #import "Parse/Parse.h"
+#import "Parse/PFImageView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -12,7 +13,7 @@ typedef void (^CompletionBlock)();
 @property (nonatomic, strong) PFUser *author;
 @property (weak, nonatomic) IBOutlet UILabel *screenName;
 @property (weak, nonatomic) IBOutlet UILabel *bio;
-@property (weak, nonatomic) IBOutlet UIImageView *profileView;
+@property (weak, nonatomic) IBOutlet PFImageView *profileView;
 @property (strong, nonatomic) NSMutableArray *matches;
 
 @property (weak, nonatomic) IBOutlet UIView *dragAreaView;
