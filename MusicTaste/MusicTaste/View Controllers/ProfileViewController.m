@@ -4,17 +4,23 @@
 #import <Parse/Parse.h>
 #import "EditViewController.h"
 #import "SpotifyAPIManager.h"
+#import "AppDelegate.h"
+#import "LoginViewController.h"
+#import "dispatch/dispatch.h"
+#import "Parse/PFImageView.h"
 
 @interface ProfileViewController () 
 @property (weak, nonatomic) IBOutlet UILabel *screenName;
 @property (weak, nonatomic) IBOutlet UILabel *bio;
 @property (weak, nonatomic) IBOutlet UILabel *age;
-@property (weak, nonatomic) IBOutlet UIImageView *profileView;
+@property (weak, nonatomic) IBOutlet PFImageView *profileView;
 @property (weak, nonatomic) IBOutlet UIImageView *artist1View;
 @property (weak, nonatomic) IBOutlet UIImageView *artist2View;
 @property (weak, nonatomic) IBOutlet UIImageView *artist3View;
 @property (weak, nonatomic) IBOutlet UIImageView *artist4View;
 @property (weak, nonatomic) NSMutableArray *artists;
+
+- (IBAction)didTapLogout:(id)sender;
 
 @end
 
@@ -23,11 +29,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.author  = [SpotifyAPIManager shared].author;
-    self.artists = [[User user] artists];
-    self.screenName.text = [[User user] name];
-    NSString *URLString = [[User user] profilePicture];
-    NSURL *urlNew = [self convertURL: URLString];
-    [self.profileView setImageWithURL: urlNew];
+    self.artists = [self.author valueForKey:@"images"];
+    self.screenName.text = [self.author valueForKey:@"username"];
+    //if statement to check if there is a customiamge to replace the default image
+    if ([self.author valueForKey:@"usercustomimage"] != nil){
+        self.profileView.file = [self.author valueForKey:@"usercustomimage"];
+        [self.profileView loadInBackground];
+    }
+    else{
+        NSString *URLString = [self.author valueForKey:@"userimage"];
+        NSURL *urlNew = [self convertURL: URLString];
+        [self.profileView setImageWithURL: urlNew];
+    }
     //Gets top artists images using fucntion Convert Url
     [self.artist1View setImageWithURL:[self convertURL:[[self.artists objectAtIndex:0] objectAtIndex:1]]];
     [self.artist2View setImageWithURL:[self convertURL:[[self.artists objectAtIndex:1] objectAtIndex:1]]];
@@ -42,7 +55,11 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    //updates bio and age when View appears
+    //updates bio, age, and image when View appears
+    if ([self.author valueForKey:@"usercustomimage"] != nil){
+        self.profileView.file = [self.author valueForKey:@"usercustomimage"];
+        [self.profileView loadInBackground];
+    }
     self.bio.text = [self.author valueForKey:@"bio"];
     self.age.text = [self.author valueForKey:@"age"];
 }
@@ -67,4 +84,5 @@
         editController.author = self.author;
     }
 }
+
 @end
