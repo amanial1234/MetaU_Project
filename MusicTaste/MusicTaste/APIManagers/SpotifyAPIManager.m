@@ -5,8 +5,6 @@
 #import "ConnectView.h"
 #import "ConnectViewController.h"
 #import "dispatch/dispatch.h"
-#import "User.h"
-
 
 @implementation SpotifyAPIManager
 
@@ -19,7 +17,6 @@
     });
     return sharedManager;
 }
-
 
 //Spotify API IDs
 static NSString * const SpotifyClientID = @"9f9a8a428178497e8c58840c65d9f3c0";
@@ -37,7 +34,6 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
     SPTScope requestedScope = SPTUserLibraryReadScope | SPTPlaylistReadPrivateScope |  SPTUserTopReadScope;
     [self.sessionManager initiateSessionWithScope:requestedScope options:SPTDefaultAuthorizationOption];
     completion(nil, nil);
-    
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
@@ -171,14 +167,13 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
                     NSArray *images = userDict[@"images"];
                     NSDictionary *imageDict = [images objectAtIndex:0];
                     if (imageDict != nil){
-                        NSString * url =[NSString stringWithFormat:imageDict[@"url"], nil];
+                        NSString * url = [NSString stringWithFormat:imageDict[@"url"], nil];
                         music[@"username"] = [NSString stringWithFormat: name, nil];
                         music[@"userimage"] = url;
                         [music saveEventually];
                     }
                 }
             }];
-            [music saveEventually];
         }
         for (PFUser *user in results){
             if ([[[user valueForKey:@"author"] valueForKey:@"objectId"] isEqual:current.objectId] )
@@ -189,4 +184,5 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
          object:self];
     }];
 }
+
 @end

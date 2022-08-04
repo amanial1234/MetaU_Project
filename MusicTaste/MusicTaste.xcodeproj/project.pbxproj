@@ -27,7 +27,6 @@
 		45B0EA52287EF86E00C4ABD2 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B0EA51287EF86E00C4ABD2 /* LoginViewController.m */; };
 		45B3C47F28986D9E00043E36 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B3C47E28986D9E00043E36 /* EditViewController.m */; };
 		45B3C4812898FC6000043E36 /* MatchmakingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B3C4802898FC6000043E36 /* MatchmakingViewController.m */; };
-		45FDD0532881B55F003483A5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FDD0522881B55F003483A5 /* User.m */; };
 		45FDD0562885E0C1003483A5 /* MatchingAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FDD0552885E0C1003483A5 /* MatchingAlgorithm.m */; };
 		5302006FE955DF688B280E5A /* Pods_MusicTasteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD6761B3501A7DCBBD555BF1 /* Pods_MusicTasteTests.framework */; };
 		68836B6E5AD463096802F15E /* Pods_MusicTaste.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3AC11E3EF09D70605DD95D2 /* Pods_MusicTaste.framework */; };
@@ -90,8 +89,6 @@
 		45B3C47D28986D9E00043E36 /* EditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
 		45B3C47E28986D9E00043E36 /* EditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
 		45B3C4802898FC6000043E36 /* MatchmakingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchmakingViewController.m; sourceTree = "<group>"; };
-		45FDD0512881B55F003483A5 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		45FDD0522881B55F003483A5 /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		45FDD0542885E0C1003483A5 /* MatchingAlgorithm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchingAlgorithm.h; sourceTree = "<group>"; };
 		45FDD0552885E0C1003483A5 /* MatchingAlgorithm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchingAlgorithm.m; sourceTree = "<group>"; };
 		72591BDFFA3BFA9B3F91603D /* Pods-MusicTaste.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicTaste.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicTaste/Pods-MusicTaste.release.xcconfig"; sourceTree = "<group>"; };
@@ -171,8 +168,6 @@
 		4578A3E62876526C00EB96A0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				45FDD0522881B55F003483A5 /* User.m */,
-				45FDD0512881B55F003483A5 /* User.h */,
 				4578A3E42876525A00EB96A0 /* MatchCell.m */,
 				4578A3E32876525A00EB96A0 /* MatchCell.h */,
 			);
@@ -502,7 +497,6 @@
 				45B3C4812898FC6000043E36 /* MatchmakingViewController.m in Sources */,
 				459577C428760DB800D566DE /* ProfileViewController.m in Sources */,
 				459577BE28760D8900D566DE /* ConnectViewController.m in Sources */,
-				45FDD0532881B55F003483A5 /* User.m in Sources */,
 				455B2EE32878B85D00524595 /* ConnectView.m in Sources */,
 				4507AF44289465CC00DF3D8E /* DetailsViewController.m in Sources */,
 				45B0EA52287EF86E00C4ABD2 /* LoginViewController.m in Sources */,
