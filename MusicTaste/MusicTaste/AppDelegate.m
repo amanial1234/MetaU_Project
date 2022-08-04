@@ -1,6 +1,7 @@
 #import "AppDelegate.h"
 #import "ConnectViewController.h"
 #import <Parse/Parse.h>
+#import "SpotifyAPIManager.h"
 
 @interface AppDelegate ()
 
@@ -19,6 +20,12 @@
     [self.window makeKeyAndVisible];
     
     //Parse
+    
+    if ([SpotifyAPIManager shared] != nil) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UINavigationController *navigationController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        self.window.rootViewController = navigationController;
+    }
     
     ParseClientConfiguration *configuration = [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
           configuration.applicationId = @"iJNJWEK6K95hrPtlEDKWcvhN3QAKBcRAXqvkmAVM";
