@@ -59,7 +59,8 @@
     MatchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MatchCell"];
     PFObject *match = self.matches[indexPath.row];
     //returns Genres, bio, name, and user's Artists
-    cell.matchName.text = [match valueForKey:@"username"];
+    cell.matchName.text = [[match valueForKey:@"username"] stringByAppendingString:@","];
+    cell.matchAge.text = [match valueForKey:@"age"];
     cell.matchBio.text = [match valueForKey:@"bio"];
     cell.matchArtists.text = [[[match valueForKey:@"images"] objectAtIndex:0] objectAtIndex:0];
     cell.matchGenres.text = [[match valueForKey:@"genres"] objectAtIndex:0];
@@ -104,11 +105,20 @@
         detailsViewController.matches = self.matches;
     }
 }
+
+-(NSURL*)convertURL:(NSString *) url{
+    NSString *stringWithoutNormal = [url stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+    //Removes the string "normal" from url to be able to use the URL
+    NSURL *urlNew = [NSURL URLWithString:stringWithoutNormal];
+    return urlNew;
+}
+
 - (void) receiveTestNotification:(NSNotification *) notification{
     //Function to see if the notification has been recieved.
     if ([[notification name] isEqualToString:@"TestNotification"])
         NSLog (@"Successfully received the test notification!");
 }
+
 - (IBAction)didTapLogout:(id)sender {
     
     dispatch_async(dispatch_get_main_queue(), ^{

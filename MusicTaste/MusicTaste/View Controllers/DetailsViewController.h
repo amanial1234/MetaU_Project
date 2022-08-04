@@ -15,6 +15,10 @@ typedef void (^CompletionBlock)();
 @property (weak, nonatomic) IBOutlet UILabel *bio;
 @property (weak, nonatomic) IBOutlet PFImageView *profileView;
 @property (strong, nonatomic) NSMutableArray *matches;
+@property (weak, nonatomic) IBOutlet UIImageView *artistsImage1;
+@property (weak, nonatomic) IBOutlet UIImageView *artistsImage2;
+@property (weak, nonatomic) IBOutlet UIImageView *artistsImage3;
+@property (weak, nonatomic) IBOutlet UIImageView *artistsImage4;
 
 @property (weak, nonatomic) IBOutlet UIView *dragAreaView;
 @property (weak, nonatomic) IBOutlet UIView *dragView;

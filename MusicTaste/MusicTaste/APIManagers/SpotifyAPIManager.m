@@ -76,7 +76,7 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
                     // get dictionary of genres, tracks, and artists based on top tracks
                     NSDictionary *tracksDict =[self convertSpotifyTracks:tracksArray];
                     [artistDict[@"artists"] addObject:tracksDict[@"artists"]];
-                    completion(@{@"artists": artistDict[@"artists"], @"tracks":tracksDict[@"tracks"], @"albums": tracksDict[@"albums"], @"genres": artistDict[@"genres"], @"images": artistDict[@"images"]}, nil);
+                    completion(@{@"artists": artistDict[@"artists"], @"tracks":tracksDict[@"tracks"], @"albums": tracksDict[@"albums"], @"genres": artistDict[@"genres"], @"artistsimages": artistDict[@"artistsimages"]}, nil);
                 }
             }];
         }
@@ -112,14 +112,14 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
     NSMutableArray *artistImages = [NSMutableArray new];
     for (NSDictionary *artist in artists){
         if  (artistImages.count < 10){
-            NSArray *artistAndImage = [NSArray arrayWithObjects: artist[@"name"],artist[@"images"][2][@"url"], nil];
+            NSArray *artistAndImage = [NSArray arrayWithObjects: artist[@"name"],artist[@"artistsimages"][2][@"url"], nil];
             [artistImages addObject:artistAndImage];
         }
         [genreArray addObjectsFromArray:artist[@"genres"]];
         [artistArray addObject:artist[@"id"]];
     }
     //Returns all the data into an Dictionary
-    return @{@"genres": genreArray, @"artists": artistArray, @"images": artistImages};
+    return @{@"genres": genreArray, @"artists": artistArray, @"artistsimages": artistImages};
 }
 
 - (NSDictionary *) convertSpotifyTracks:(NSArray *)tracks{
@@ -159,7 +159,7 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
             music[@"tracks"] = [NSArray arrayWithArray:spotifyData[@"tracks"]];
             music[@"artists"] = [NSArray arrayWithArray:spotifyData[@"artists"]];
             music[@"albums"] = [NSArray arrayWithArray:spotifyData[@"albums"]];
-            music[@"images"] = [NSArray arrayWithArray:spotifyData[@"images"]];
+            music[@"artistsimages"] = [NSArray arrayWithArray:spotifyData[@"artistsimages"]];
             [self getSpotifyData:@"https://api.spotify.com/v1/me" completion:^(NSDictionary * userDict, NSError * error) {
                 if (!error){
                     PFUser *current = [PFUser currentUser];

@@ -8,7 +8,7 @@
 #define DRAG_AREA_PADDING 5
 
 @interface DetailsViewController ()
-
+@property (weak, nonatomic) NSMutableArray *artists;
 @end
 
 @implementation DetailsViewController
@@ -18,6 +18,11 @@
     //Set Username, Image, and Bio
     self.screenName.text = [self.author valueForKey:@"username"];
     self.bio.text = [self.author valueForKey:@"bio"];
+    self.artists = [self.author valueForKey:@"artistsimages"];
+    [self.artistsImage1 setImageWithURL:[self convertURL:[[self.artists objectAtIndex:0] objectAtIndex:1]]];
+    [self.artistsImage2 setImageWithURL:[self convertURL:[[self.artists objectAtIndex:1] objectAtIndex:1]]];
+    [self.artistsImage3 setImageWithURL:[self convertURL:[[self.artists objectAtIndex:2] objectAtIndex:1]]];
+    [self.artistsImage4 setImageWithURL:[self convertURL:[[self.artists objectAtIndex:3] objectAtIndex:1]]];
     if ([self.author valueForKey:@"usercustomimage"] != nil){
         self.profileView.file = [self.author valueForKey:@"usercustomimage"];
         [self.profileView loadInBackground];
@@ -168,6 +173,13 @@
     }
 }
 #pragma mark - Getters
+
+-(NSURL*)convertURL:(NSString *) url{
+    NSString *stringWithoutNormal = [url stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+    //Removes the string "normal" from url to be able to use the URL
+    NSURL *urlNew = [NSURL URLWithString:stringWithoutNormal];
+    return urlNew;
+}
 
 - (BOOL)isAcceptReached {
     //Checks if Accept is reached

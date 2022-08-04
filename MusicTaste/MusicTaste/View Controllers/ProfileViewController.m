@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.author  = [SpotifyAPIManager shared].author;
-    self.artists = [self.author valueForKey:@"images"];
+    self.artists = [self.author valueForKey:@"artistsimages"];
     self.screenName.text = [self.author valueForKey:@"username"];
     //if statement to check if there is a customiamge to replace the default image
     if ([self.author valueForKey:@"usercustomimage"] != nil){
