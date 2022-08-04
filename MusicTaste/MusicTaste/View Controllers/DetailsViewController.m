@@ -3,6 +3,7 @@
 #import <Parse/Parse.h>
 #import "UIImageView+AFNetworking.h"
 #import "MatchmakingViewController.h"
+#import "Parse/PFImageView.h"
 
 #define DRAG_AREA_PADDING 5
 
@@ -17,10 +18,16 @@
     //Set Username, Image, and Bio
     self.screenName.text = [self.author valueForKey:@"username"];
     self.bio.text = [self.author valueForKey:@"bio"];
-    NSString *URLString = [self.author valueForKey:@"userimage"];
-    NSString *stringWithoutNormal = [URLString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
-    NSURL *urlNew = [NSURL URLWithString:stringWithoutNormal];
-    [self.profileView setImageWithURL: urlNew];
+    if ([self.author valueForKey:@"usercustomimage"] != nil){
+        self.profileView.file = [self.author valueForKey:@"usercustomimage"];
+        [self.profileView loadInBackground];
+    }
+    else{
+        NSString *URLString = [self.author valueForKey:@"userimage"];
+        NSString *stringWithoutNormal = [URLString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+        NSURL *urlNew = [NSURL URLWithString:stringWithoutNormal];
+        [self.profileView setImageWithURL: urlNew];
+    }
     self.profileView.layer.cornerRadius = self.profileView.frame.size.height/2;
     //Sets intial constraints on views
     self.lastBounds = self.view.bounds;
@@ -174,14 +181,21 @@
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([[segue identifier] isEqualToString:@"backSegue"]) {
-        UINavigationController *navigationController = [segue destinationViewController];
-        MatchmakingViewController *matchmakingController = (MatchmakingViewController*)navigationController.topViewController;
-        //Passes the matches for the matchmakingViewController
-        matchmakingController.matches = self.matches;
+        UITabBarController *tabBar = [segue destinationViewController];
+        for (UIViewController *viewcontroller in tabBar.viewControllers) {
+            
+            UIViewController *presentvc = viewcontroller;
+            
+            if ([viewcontroller isKindOfClass:[UINavigationController class]]) {
+                MatchmakingViewController *matchmakingController = (MatchmakingViewController*)viewcontroller;
+                presentvc = [((UINavigationController *)viewcontroller) visibleViewController];
+            }
+            
+            if ([presentvc isKindOfClass:[MatchmakingViewController class]]) {
+                MatchmakingViewController *matchmakingviewcontroller = presentvc;
+                matchmakingviewcontroller.matches = self.matches;
+            }
+        }
     }
 }
-
-#pragma mark -
-
-
 @end

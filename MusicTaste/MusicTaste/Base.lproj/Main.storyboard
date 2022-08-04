@@ -171,8 +171,8 @@
                                     <constraint firstAttribute="width" constant="87" id="RAp-DB-fTx"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Music Taste" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKp-HQ-CRJ">
-                                <rect key="frame" x="162" y="56" width="91" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Music Taste" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKp-HQ-CRJ">
+                                <rect key="frame" x="162" y="88" width="91" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -416,7 +416,7 @@
                                 <rect key="frame" x="20" y="140" width="151" height="144"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iol-Pf-Zo1" userLabel="Drag Area View">
-                                <rect key="frame" x="10" y="496" width="394" height="366"/>
+                                <rect key="frame" x="10" y="496" width="394" height="317"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ICt-91-qUa" userLabel="Reject View">
                                         <rect key="frame" x="220" y="212" width="152" height="105"/>
@@ -530,7 +530,7 @@
                         <outlet property="rejectLabel" destination="bVs-bJ-L68" id="7gw-Zx-89d"/>
                         <outlet property="rejectView" destination="ICt-91-qUa" id="VPv-gs-QoY"/>
                         <outlet property="screenName" destination="Pmo-YL-2ad" id="J8w-SL-8Bi"/>
-                        <segue destination="eIh-fp-MOA" kind="presentation" identifier="backSegue" modalPresentationStyle="fullScreen" id="yoe-iL-eaj"/>
+                        <segue destination="R6Q-0p-rq0" kind="presentation" identifier="backSegue" modalPresentationStyle="fullScreen" id="eeb-ty-e2l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xlw-fC-8gk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -693,7 +693,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="yoe-iL-eaj"/>
+        <segue reference="eeb-ty-e2l"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.uturn.backward" catalog="system" width="128" height="112"/>

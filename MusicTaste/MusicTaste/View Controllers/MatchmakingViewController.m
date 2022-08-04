@@ -10,13 +10,15 @@
 #import <UIKit/UIKit.h>
 #import "UIImageView+AFNetworking.h"
 #import "DetailsViewController.h"
-
+#import "dispatch/dispatch.h"
+#import "LoginViewController.h"
 @interface MatchmakingViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *MatchTableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSString *name;
 @property (strong, nonatomic) NSArray *matchesObjectIds;
 @property (nonatomic, strong) NSArray *profilePicture;
+- (IBAction)didTapLogout:(id)sender;
 
 @end
 
@@ -44,8 +46,9 @@
 - (void)updateView:(BOOL)animated{
     //Function to update matches once the notifcation is returned
     self.author  = [SpotifyAPIManager shared].author;
-    [self getMatchesDictionary];
-    [[MatchingAlgorithm shared] lookForMatches];
+    if ([self.author valueForKey:@"matches"] != nil){
+        [[MatchingAlgorithm shared] lookForMatches];
+    }
     [self getMatchesDictionary];
 }
 
@@ -74,16 +77,16 @@
 -(void)getMatchesDictionary{
     PFQuery *music = [PFQuery queryWithClassName:@"Music"];
     NSMutableArray *allMatchesArray = [self.author valueForKey:@"matches"];
-    NSMutableDictionary *matchesDict = [allMatchesArray objectAtIndex:0];
-    self.matchesObjectIds = [matchesDict keysSortedByValueUsingSelector:@selector(compare:)];
     //query through each match
     [music findObjectsInBackgroundWithBlock:^(NSArray *users, NSError *error) {
         if (users != nil) {
-            self.matches = [[NSMutableArray alloc] initWithArray:users];
-            for (PFObject *user in users){
-                if (![self.matchesObjectIds containsObject: user.objectId]){
-                    [self.matches removeObject:user];
-                    [self.MatchTableView reloadData];
+            self.matches = [[NSMutableArray alloc] init];
+            for (NSString *matchid in allMatchesArray){
+                for (PFObject *user in users){
+                    if ([matchid isEqual: user.objectId]){
+                        [self.matches addObject:user];
+                        [self.MatchTableView reloadData];
+                    }
                 }
             }
         }

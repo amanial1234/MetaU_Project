@@ -55,9 +55,7 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
     [self getSpotifyTracksArtists:^(NSDictionary *dict, NSError *error) {
         if (!error){
             //Gets Access Token and save user's Spotify Track Artists data
-            [self saveSpotifyUserData:dict];
             [self saveSpotifyData:dict];
-            
         }
     }];
 }
@@ -157,8 +155,8 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
     PFObject *music = [PFObject objectWithClassName:@"Music"];
     PFUser *current = [PFUser currentUser];
     PFQuery *query = [PFQuery queryWithClassName:@"Music"];
+    //saves data dictionary in SpotifyAPIManager for easier user
     [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
-        [User user].artists = [NSArray arrayWithArray:spotifyData[@"images"]];
         if (![[[results valueForKey:@"author"] valueForKey:@"objectId"] containsObject: current.objectId]){
             music[@"author"] = current;
             music[@"genres"] = [NSArray arrayWithArray:spotifyData[@"genres"]];
@@ -191,21 +189,4 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
          object:self];
     }];
 }
-
--(void) saveSpotifyUserData:(NSDictionary *) spotifyData{
-    // Saves name and Profile Picture to User
-    [self getSpotifyData:@"https://api.spotify.com/v1/me" completion:^(NSDictionary * userDict, NSError * error) {
-        if (!error){
-            NSString *name = userDict[@"display_name"];
-            NSArray *images = userDict[@"images"];
-            NSDictionary *imageDict = [images objectAtIndex:0];
-            if (imageDict != nil){
-                [User user].name = [NSString stringWithFormat: name, nil];
-                NSString * url =[NSString stringWithFormat:imageDict[@"url"], nil];
-                [User user].profilePicture = url;
-            }
-        }
-    }];
-}
-
 @end
