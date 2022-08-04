@@ -1,6 +1,5 @@
 #import "MatchmakingViewController.h"
 #import "MatchCell.h"
-#import "User.h"
 #import "SpotifyAPIManager.h"
 #import "MatchingAlgorithm.h"
 #import "Parse/Parse.h"
@@ -97,9 +96,9 @@
     //Segue to Details View Controller
     if([[segue identifier] isEqualToString:@"detailsSegue"]) {
         UITableViewCell *cell = sender;
-        NSIndexPath *indexpath = [self.MatchTableView indexPathForCell:cell];
+        NSIndexPath *indexPath = [self.MatchTableView indexPathForCell:cell];
         DetailsViewController *detailsViewController = [segue destinationViewController];
-        PFUser *match = self.matches[indexpath.row];
+        PFUser *match = self.matches[indexPath.row];
         //shares matches Array and Match User to DetailsViewController
         detailsViewController.author = match;
         detailsViewController.matches = self.matches;

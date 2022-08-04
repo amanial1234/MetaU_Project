@@ -1,6 +1,5 @@
 #import "ProfileViewController.h"
 #import "UIImageView+AFNetworking.h"
-#import "User.h"
 #import <Parse/Parse.h>
 #import "EditViewController.h"
 #import "SpotifyAPIManager.h"
@@ -86,7 +85,6 @@
     if([[segue identifier] isEqualToString:@"editSegue"]) {
         UINavigationController *navigationController = [segue destinationViewController];
         EditViewController *editController = (EditViewController*)navigationController.topViewController;
-        editController.delegate = self;
         //passes the user
         editController.author = self.author;
     }

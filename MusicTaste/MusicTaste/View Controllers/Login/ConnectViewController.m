@@ -16,8 +16,6 @@
     [super viewDidLoad];
 }
 #pragma mark - Actions
--(void)viewDidAppear:(BOOL)animated{
-}
 
 - (void)didTapAuthButton:(ConnectButton *)sender
 {
@@ -26,7 +24,7 @@
         if (!error) {
             //Once authorize the ConnectViewController will segue to the LoginView Controller
             [self performSegueWithIdentifier:@"tabBarSegue" sender:nil];
-        }else{}
+        }
     }];
 }
 
@@ -38,4 +36,5 @@
     [view.connectButton addTarget:self action:@selector(didTapAuthButton:) forControlEvents:UIControlEventTouchUpInside];
     self.view = view;
 }
+
 @end
