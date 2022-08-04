@@ -75,6 +75,13 @@
     NSURL *urlNew = [NSURL URLWithString:stringWithoutNormal];
     return urlNew;
 }
+- (IBAction)didTapLogout:(UIButton *)sender {
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    appDelegate.window.rootViewController = loginViewController;
+    [self performSegueWithIdentifier:@"PLoginSegue" sender:nil];
+}
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([[segue identifier] isEqualToString:@"editSegue"]) {
         UINavigationController *navigationController = [segue destinationViewController];
