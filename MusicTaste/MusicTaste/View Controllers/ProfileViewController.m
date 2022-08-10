@@ -36,9 +36,11 @@
         [self.profileView loadInBackground];
     }
     else{
-        NSString *URLString = [self.author valueForKey:@"userimage"];
-        NSURL *urlNew = [self convertURL: URLString];
-        [self.profileView setImageWithURL: urlNew];
+        if ([self.author valueForKey:@"userimage"] != nil){
+            NSString *URLString = [self.author valueForKey:@"userimage"];
+            NSURL *urlNew = [self convertURL: URLString];
+            [self.profileView setImageWithURL: urlNew];
+        }
     }
     //Gets top artists images using fucntion Convert Url
     [self.artist1View setImageWithURL:[self convertURL:[[self.artists objectAtIndex:0] objectAtIndex:1]]];

@@ -45,9 +45,9 @@
 - (void)updateView:(BOOL)animated{
     //Function to update matches once the notifcation is returned
     self.author  = [SpotifyAPIManager shared].author;
-    if ([self.author valueForKey:@"matches"] != nil){
-        [[MatchingAlgorithm shared] lookForMatches];
-    }
+//    if ([self.author valueForKey:@"matches"] != nil){
+    [[MatchingAlgorithm shared] lookForMatches];
+//    }
     [self getMatchesDictionary];
 }
 
@@ -62,7 +62,7 @@
     cell.matchName.text = [[match valueForKey:@"username"] stringByAppendingString:@","];
     cell.matchAge.text = [match valueForKey:@"age"];
     cell.matchBio.text = [match valueForKey:@"bio"];
-    cell.matchArtists.text = [[[match valueForKey:@"images"] objectAtIndex:0] objectAtIndex:0];
+    cell.matchArtists.text = [[[match valueForKey:@"artistsimages"] objectAtIndex:0] objectAtIndex:0];
     cell.matchGenres.text = [[match valueForKey:@"genres"] objectAtIndex:0];
     if ([match valueForKey:@"userimage"] != nil){
         NSString *URLString = [match valueForKey:@"userimage"];

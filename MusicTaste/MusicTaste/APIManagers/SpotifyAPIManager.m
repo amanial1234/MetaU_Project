@@ -112,7 +112,7 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
     NSMutableArray *artistImages = [NSMutableArray new];
     for (NSDictionary *artist in artists){
         if  (artistImages.count < 10){
-            NSArray *artistAndImage = [NSArray arrayWithObjects: artist[@"name"],artist[@"artistsimages"][2][@"url"], nil];
+            NSArray *artistAndImage = [NSArray arrayWithObjects: artist[@"name"],artist[@"images"][2][@"url"], nil];
             [artistImages addObject:artistAndImage];
         }
         [genreArray addObjectsFromArray:artist[@"genres"]];
@@ -165,13 +165,13 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
                     PFUser *current = [PFUser currentUser];
                     NSString *name = userDict[@"display_name"];
                     NSArray *images = userDict[@"images"];
-                    NSDictionary *imageDict = [images objectAtIndex:0];
-                    if (imageDict != nil){
+                    if ([images count] !=  0){
+                        NSDictionary *imageDict = [images objectAtIndex:0];
                         NSString * url = [NSString stringWithFormat:imageDict[@"url"], nil];
-                        music[@"username"] = [NSString stringWithFormat: name, nil];
                         music[@"userimage"] = url;
-                        [music saveEventually];
                     }
+                    music[@"username"] = [NSString stringWithFormat: name, nil];
+                    [music saveEventually];
                 }
             }];
         }
