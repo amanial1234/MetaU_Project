@@ -45,9 +45,7 @@
 - (void)updateView:(BOOL)animated{
     //Function to update matches once the notifcation is returned
     self.author  = [SpotifyAPIManager shared].author;
-//    if ([self.author valueForKey:@"matches"] != nil){
     [[MatchingAlgorithm shared] lookForMatches];
-//    }
     [self getMatchesDictionary];
 }
 
