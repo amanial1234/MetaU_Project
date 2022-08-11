@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4507AF44289465CC00DF3D8E /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4507AF43289465CC00DF3D8E /* DetailsViewController.m */; };
+		45282AF228A4717C00C1FB34 /* AcceptedMatchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 45282AF128A4717C00C1FB34 /* AcceptedMatchCell.m */; };
+		45282AF528A4722B00C1FB34 /* MessagingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45282AF428A4722B00C1FB34 /* MessagingViewController.m */; };
+		45282AFF28A490DE00C1FB34 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45282AFE28A490DE00C1FB34 /* ChatViewController.m */; };
 		455B2EDD2877AAB900524595 /* SpotifyiOS.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 455B2EDC2877AAB900524595 /* SpotifyiOS.xcframework */; };
 		455B2EE32878B85D00524595 /* ConnectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 455B2EE22878B85D00524595 /* ConnectView.m */; };
 		455B2EE62878B89B00524595 /* ConnectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 455B2EE52878B89B00524595 /* ConnectButton.m */; };
@@ -55,6 +58,12 @@
 		047EF19126B25DCAA859E7C6 /* Pods-MusicTasteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicTasteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicTasteTests/Pods-MusicTasteTests.release.xcconfig"; sourceTree = "<group>"; };
 		4507AF42289465CC00DF3D8E /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		4507AF43289465CC00DF3D8E /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		45282AF028A4717C00C1FB34 /* AcceptedMatchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AcceptedMatchCell.h; sourceTree = "<group>"; };
+		45282AF128A4717C00C1FB34 /* AcceptedMatchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AcceptedMatchCell.m; sourceTree = "<group>"; };
+		45282AF328A4722B00C1FB34 /* MessagingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessagingViewController.h; sourceTree = "<group>"; };
+		45282AF428A4722B00C1FB34 /* MessagingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessagingViewController.m; sourceTree = "<group>"; };
+		45282AFD28A490DE00C1FB34 /* ChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		45282AFE28A490DE00C1FB34 /* ChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		455B2EDC2877AAB900524595 /* SpotifyiOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SpotifyiOS.xcframework; sourceTree = "<group>"; };
 		455B2EE12878B85D00524595 /* ConnectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectView.h; sourceTree = "<group>"; };
 		455B2EE22878B85D00524595 /* ConnectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectView.m; sourceTree = "<group>"; };
@@ -170,6 +179,8 @@
 			children = (
 				4578A3E42876525A00EB96A0 /* MatchCell.m */,
 				4578A3E32876525A00EB96A0 /* MatchCell.h */,
+				45282AF028A4717C00C1FB34 /* AcceptedMatchCell.h */,
+				45282AF128A4717C00C1FB34 /* AcceptedMatchCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -247,6 +258,8 @@
 			isa = PBXGroup;
 			children = (
 				455B2EE02878B7B500524595 /* Login */,
+				45282AF328A4722B00C1FB34 /* MessagingViewController.h */,
+				45282AF428A4722B00C1FB34 /* MessagingViewController.m */,
 				459577BF28760D9A00D566DE /* MatchmakingViewController.h */,
 				45B3C4802898FC6000043E36 /* MatchmakingViewController.m */,
 				459577C228760DB800D566DE /* ProfileViewController.h */,
@@ -255,6 +268,8 @@
 				4507AF43289465CC00DF3D8E /* DetailsViewController.m */,
 				45B3C47D28986D9E00043E36 /* EditViewController.h */,
 				45B3C47E28986D9E00043E36 /* EditViewController.m */,
+				45282AFD28A490DE00C1FB34 /* ChatViewController.h */,
+				45282AFE28A490DE00C1FB34 /* ChatViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -487,6 +502,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				455B2EE62878B89B00524595 /* ConnectButton.m in Sources */,
+				45282AF528A4722B00C1FB34 /* MessagingViewController.m in Sources */,
 				4578A3E22876323800EB96A0 /* SpotifyAPIManager.m in Sources */,
 				459577892874F04300D566DE /* AppDelegate.m in Sources */,
 				45FDD0562885E0C1003483A5 /* MatchingAlgorithm.m in Sources */,
@@ -498,6 +514,8 @@
 				459577C428760DB800D566DE /* ProfileViewController.m in Sources */,
 				459577BE28760D8900D566DE /* ConnectViewController.m in Sources */,
 				455B2EE32878B85D00524595 /* ConnectView.m in Sources */,
+				45282AF228A4717C00C1FB34 /* AcceptedMatchCell.m in Sources */,
+				45282AFF28A490DE00C1FB34 /* ChatViewController.m in Sources */,
 				4507AF44289465CC00DF3D8E /* DetailsViewController.m in Sources */,
 				45B0EA52287EF86E00C4ABD2 /* LoginViewController.m in Sources */,
 			);

@@ -11,6 +11,8 @@
 #import "DetailsViewController.h"
 #import "dispatch/dispatch.h"
 #import "LoginViewController.h"
+#import "UIColor+HTColor.h"
+
 @interface MatchmakingViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *MatchTableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
@@ -30,6 +32,7 @@
     self.MatchTableView.dataSource = self;
     self.MatchTableView.delegate = self;
     self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(getMatchesDictionary) forControlEvents:UIControlEventValueChanged];
     [self.MatchTableView insertSubview:self.refreshControl atIndex:0];
     [self.MatchTableView addSubview:self.refreshControl];
     self.MatchTableView.rowHeight = 540;
@@ -39,15 +42,25 @@
                                                  name:@"TestNotification"
                                                object:nil];
     MatchCell *cell = [_MatchTableView dequeueReusableCellWithIdentifier:@"MatchCell"];
+    UIColor *topColor = [UIColor ht_midnightBlueColor];
+    UIColor *bottomColor = [UIColor blackColor];
+        
+    CAGradientLayer *theViewGradient = [CAGradientLayer layer];
+    theViewGradient.colors = [NSArray arrayWithObjects: (id)topColor.CGColor, (id)bottomColor.CGColor, nil];
+    theViewGradient.frame = self.view.bounds;
+    theViewGradient.startPoint = CGPointZero;
+    theViewGradient.endPoint = CGPointMake(0, .1);
+    theViewGradient.colors = [NSArray arrayWithObjects: (id)topColor.CGColor, (id)bottomColor.CGColor, nil];
+    [self.view.layer insertSublayer:theViewGradient atIndex:0];
+    
     [self.view bringSubviewToFront:cell.matchName];
+    
 }
 
 - (void)updateView:(BOOL)animated{
     //Function to update matches once the notifcation is returned
     self.author  = [SpotifyAPIManager shared].author;
-//    if ([self.author valueForKey:@"matches"] != nil){
     [[MatchingAlgorithm shared] lookForMatches];
-//    }
     [self getMatchesDictionary];
 }
 
@@ -74,6 +87,10 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 -(void)getMatchesDictionary{
     PFQuery *music = [PFQuery queryWithClassName:@"Music"];
     NSMutableArray *allMatchesArray = [self.author valueForKey:@"matches"];
@@ -90,6 +107,7 @@
                 }
             }
         }
+        [self.refreshControl endRefreshing];
     }];
 }
 
@@ -102,6 +120,7 @@
         PFUser *match = self.matches[indexPath.row];
         //shares matches Array and Match User to DetailsViewController
         detailsViewController.author = match;
+        detailsViewController.user = self.author;
         detailsViewController.matches = self.matches;
     }
 }
@@ -120,13 +139,10 @@
 }
 
 - (IBAction)didTapLogout:(id)sender {
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
         AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
         appDelegate.window.rootViewController = loginViewController;
         [self performSegueWithIdentifier:@"MLoginSegue" sender:nil];
-    });
 }
 @end

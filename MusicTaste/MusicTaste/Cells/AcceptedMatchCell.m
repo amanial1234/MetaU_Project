@@ -1,13 +1,15 @@
-#import "MatchCell.h"
+#import "AcceptedMatchCell.h"
 
-@implementation MatchCell
+@implementation AcceptedMatchCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+
 }
 
 @end

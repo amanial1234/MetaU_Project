@@ -5,7 +5,9 @@
 @property (weak, nonatomic) IBOutlet UITextView *composeBio;
 @property (weak, nonatomic) IBOutlet UILabel *characterCount;
 @property (weak, nonatomic) IBOutlet UITextField *ageField;
+@property (weak, nonatomic) IBOutlet UITextField *stateField;
 @property (weak, nonatomic) IBOutlet UIImageView *composeview;
+@property (weak, nonatomic) IBOutlet UIButton *editButton;
 
 @end
 
@@ -22,6 +24,7 @@
     //Saves User's Bio and Age once the Done Button is pressed
     self.author[@"bio"] = self.composeBio.text;
     self.author[@"age"] = self.ageField.text;
+    self.author[@"location"] = self.stateField.text;
     [self.author saveEventually];
     [self dismissViewControllerAnimated:true completion:nil];
 }
@@ -29,6 +32,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.composeBio becomeFirstResponder];
+    
+    self.editButton.layer.cornerRadius = 12;
+    self.editButton.layer.borderWidth = 1;
+    self.editButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    
 }
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     PFQuery *music = [PFQuery queryWithClassName:@"Music"];
