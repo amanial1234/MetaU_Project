@@ -14,6 +14,9 @@
 		455B2EDD2877AAB900524595 /* SpotifyiOS.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 455B2EDC2877AAB900524595 /* SpotifyiOS.xcframework */; };
 		455B2EE32878B85D00524595 /* ConnectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 455B2EE22878B85D00524595 /* ConnectView.m */; };
 		455B2EE62878B89B00524595 /* ConnectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 455B2EE52878B89B00524595 /* ConnectButton.m */; };
+		455F5CCA28A56194001AC217 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 455F5CC928A56194001AC217 /* MessageCell.m */; };
+		455F5CCD28A561BE001AC217 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 455F5CCC28A561BE001AC217 /* Message.m */; };
+		455F5CD028A561E6001AC217 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 455F5CCF28A561E6001AC217 /* Conversation.m */; };
 		4578A3E22876323800EB96A0 /* SpotifyAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4578A3E12876323800EB96A0 /* SpotifyAPIManager.m */; };
 		4578A3E52876525A00EB96A0 /* MatchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4578A3E42876525A00EB96A0 /* MatchCell.m */; };
 		459577892874F04300D566DE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 459577882874F04300D566DE /* AppDelegate.m */; };
@@ -69,6 +72,12 @@
 		455B2EE22878B85D00524595 /* ConnectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectView.m; sourceTree = "<group>"; };
 		455B2EE42878B89B00524595 /* ConnectButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectButton.h; sourceTree = "<group>"; };
 		455B2EE52878B89B00524595 /* ConnectButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectButton.m; sourceTree = "<group>"; };
+		455F5CC828A56194001AC217 /* MessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MessageCell.h; path = "View Controllers/MessageCell.h"; sourceTree = "<group>"; };
+		455F5CC928A56194001AC217 /* MessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MessageCell.m; path = "View Controllers/MessageCell.m"; sourceTree = "<group>"; };
+		455F5CCB28A561BE001AC217 /* Message.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Message.h; path = "View Controllers/Message.h"; sourceTree = "<group>"; };
+		455F5CCC28A561BE001AC217 /* Message.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Message.m; path = "View Controllers/Message.m"; sourceTree = "<group>"; };
+		455F5CCE28A561E6001AC217 /* Conversation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
+		455F5CCF28A561E6001AC217 /* Conversation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
 		4578A3E02876323800EB96A0 /* SpotifyAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpotifyAPIManager.h; sourceTree = "<group>"; };
 		4578A3E12876323800EB96A0 /* SpotifyAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpotifyAPIManager.m; sourceTree = "<group>"; };
 		4578A3E32876525A00EB96A0 /* MatchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchCell.h; sourceTree = "<group>"; };
@@ -219,6 +228,12 @@
 		459577862874F04300D566DE /* MusicTaste */ = {
 			isa = PBXGroup;
 			children = (
+				455F5CCB28A561BE001AC217 /* Message.h */,
+				455F5CCC28A561BE001AC217 /* Message.m */,
+				455F5CCE28A561E6001AC217 /* Conversation.h */,
+				455F5CCF28A561E6001AC217 /* Conversation.m */,
+				455F5CC828A56194001AC217 /* MessageCell.h */,
+				455F5CC928A56194001AC217 /* MessageCell.m */,
 				45FDD0552885E0C1003483A5 /* MatchingAlgorithm.m */,
 				45FDD0542885E0C1003483A5 /* MatchingAlgorithm.h */,
 				4578A3E62876526C00EB96A0 /* Cells */,
@@ -422,18 +437,26 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MusicTaste/Pods-MusicTaste-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts-Swift/BoltsSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/GMImagePicker/GMImagePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/HTPressableButton/HTPressableButton.framework",
+				"${BUILT_PRODUCTS_DIR}/JVFloatLabeledTextField/JVFloatLabeledTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
+				"${BUILT_PRODUCTS_DIR}/ParseLiveQuery/ParseLiveQuery.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BoltsSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GMImagePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HTPressableButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JVFloatLabeledTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ParseLiveQuery.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -501,6 +524,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				455F5CD028A561E6001AC217 /* Conversation.m in Sources */,
 				455B2EE62878B89B00524595 /* ConnectButton.m in Sources */,
 				45282AF528A4722B00C1FB34 /* MessagingViewController.m in Sources */,
 				4578A3E22876323800EB96A0 /* SpotifyAPIManager.m in Sources */,
@@ -510,12 +534,14 @@
 				4595779A2874F04500D566DE /* main.m in Sources */,
 				4578A3E52876525A00EB96A0 /* MatchCell.m in Sources */,
 				4595778C2874F04300D566DE /* SceneDelegate.m in Sources */,
+				455F5CCD28A561BE001AC217 /* Message.m in Sources */,
 				45B3C4812898FC6000043E36 /* MatchmakingViewController.m in Sources */,
 				459577C428760DB800D566DE /* ProfileViewController.m in Sources */,
 				459577BE28760D8900D566DE /* ConnectViewController.m in Sources */,
 				455B2EE32878B85D00524595 /* ConnectView.m in Sources */,
 				45282AF228A4717C00C1FB34 /* AcceptedMatchCell.m in Sources */,
 				45282AFF28A490DE00C1FB34 /* ChatViewController.m in Sources */,
+				455F5CCA28A56194001AC217 /* MessageCell.m in Sources */,
 				4507AF44289465CC00DF3D8E /* DetailsViewController.m in Sources */,
 				45B0EA52287EF86E00C4ABD2 /* LoginViewController.m in Sources */,
 			);
