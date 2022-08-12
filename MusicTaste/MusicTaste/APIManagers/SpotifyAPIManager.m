@@ -76,7 +76,7 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
                     // get dictionary of genres, tracks, and artists based on top tracks
                     NSDictionary *tracksDict =[self convertSpotifyTracks:tracksArray];
                     [artistDict[@"artists"] addObject:tracksDict[@"artists"]];
-                    completion(@{@"artists": artistDict[@"artists"], @"tracks":tracksDict[@"tracks"], @"albums": tracksDict[@"albums"], @"genres": artistDict[@"genres"], @"images": artistDict[@"images"]}, nil);
+                    completion(@{@"artists": artistDict[@"artists"], @"tracks":tracksDict[@"tracks"], @"albums": tracksDict[@"albums"], @"genres": artistDict[@"genres"], @"artistsimages": artistDict[@"artistsimages"]}, nil);
                 }
             }];
         }
@@ -119,7 +119,7 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
         [artistArray addObject:artist[@"id"]];
     }
     //Returns all the data into an Dictionary
-    return @{@"genres": genreArray, @"artists": artistArray, @"images": artistImages};
+    return @{@"genres": genreArray, @"artists": artistArray, @"artistsimages": artistImages};
 }
 
 - (NSDictionary *) convertSpotifyTracks:(NSArray *)tracks{
@@ -159,19 +159,19 @@ static NSString * const SpotifyRedirectURLString = @"spotify-ios-quick-start://s
             music[@"tracks"] = [NSArray arrayWithArray:spotifyData[@"tracks"]];
             music[@"artists"] = [NSArray arrayWithArray:spotifyData[@"artists"]];
             music[@"albums"] = [NSArray arrayWithArray:spotifyData[@"albums"]];
-            music[@"images"] = [NSArray arrayWithArray:spotifyData[@"images"]];
+            music[@"artistsimages"] = [NSArray arrayWithArray:spotifyData[@"artistsimages"]];
             [self getSpotifyData:@"https://api.spotify.com/v1/me" completion:^(NSDictionary * userDict, NSError * error) {
                 if (!error){
                     PFUser *current = [PFUser currentUser];
                     NSString *name = userDict[@"display_name"];
                     NSArray *images = userDict[@"images"];
-                    NSDictionary *imageDict = [images objectAtIndex:0];
-                    if (imageDict != nil){
+                    if ([images count] !=  0){
+                        NSDictionary *imageDict = [images objectAtIndex:0];
                         NSString * url = [NSString stringWithFormat:imageDict[@"url"], nil];
-                        music[@"username"] = [NSString stringWithFormat: name, nil];
                         music[@"userimage"] = url;
-                        [music saveEventually];
                     }
+                    music[@"username"] = [NSString stringWithFormat: name, nil];
+                    [music saveEventually];
                 }
             }];
         }

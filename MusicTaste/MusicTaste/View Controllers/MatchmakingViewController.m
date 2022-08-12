@@ -11,6 +11,8 @@
 #import "DetailsViewController.h"
 #import "dispatch/dispatch.h"
 #import "LoginViewController.h"
+#import "UIColor+HTColor.h"
+
 @interface MatchmakingViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *MatchTableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
@@ -30,6 +32,7 @@
     self.MatchTableView.dataSource = self;
     self.MatchTableView.delegate = self;
     self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(getMatchesDictionary) forControlEvents:UIControlEventValueChanged];
     [self.MatchTableView insertSubview:self.refreshControl atIndex:0];
     [self.MatchTableView addSubview:self.refreshControl];
     self.MatchTableView.rowHeight = 540;
@@ -39,15 +42,25 @@
                                                  name:@"TestNotification"
                                                object:nil];
     MatchCell *cell = [_MatchTableView dequeueReusableCellWithIdentifier:@"MatchCell"];
+    UIColor *topColor = [UIColor ht_midnightBlueColor];
+    UIColor *bottomColor = [UIColor blackColor];
+        
+    CAGradientLayer *theViewGradient = [CAGradientLayer layer];
+    theViewGradient.colors = [NSArray arrayWithObjects: (id)topColor.CGColor, (id)bottomColor.CGColor, nil];
+    theViewGradient.frame = self.view.bounds;
+    theViewGradient.startPoint = CGPointZero;
+    theViewGradient.endPoint = CGPointMake(0, .1);
+    theViewGradient.colors = [NSArray arrayWithObjects: (id)topColor.CGColor, (id)bottomColor.CGColor, nil];
+    [self.view.layer insertSublayer:theViewGradient atIndex:0];
+    
     [self.view bringSubviewToFront:cell.matchName];
+    
 }
 
 - (void)updateView:(BOOL)animated{
     //Function to update matches once the notifcation is returned
     self.author  = [SpotifyAPIManager shared].author;
-    if ([self.author valueForKey:@"matches"] != nil){
-        [[MatchingAlgorithm shared] lookForMatches];
-    }
+    [[MatchingAlgorithm shared] lookForMatches];
     [self getMatchesDictionary];
 }
 
@@ -59,9 +72,10 @@
     MatchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MatchCell"];
     PFObject *match = self.matches[indexPath.row];
     //returns Genres, bio, name, and user's Artists
-    cell.matchName.text = [match valueForKey:@"username"];
+    cell.matchName.text = [[match valueForKey:@"username"] stringByAppendingString:@","];
+    cell.matchAge.text = [match valueForKey:@"age"];
     cell.matchBio.text = [match valueForKey:@"bio"];
-    cell.matchArtists.text = [[[match valueForKey:@"images"] objectAtIndex:0] objectAtIndex:0];
+    cell.matchArtists.text = [[[match valueForKey:@"artistsimages"] objectAtIndex:0] objectAtIndex:0];
     cell.matchGenres.text = [[match valueForKey:@"genres"] objectAtIndex:0];
     if ([match valueForKey:@"userimage"] != nil){
         NSString *URLString = [match valueForKey:@"userimage"];
@@ -71,6 +85,10 @@
         cell.matchImage.layer.cornerRadius = cell.matchImage.frame.size.height/10;
     }
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 -(void)getMatchesDictionary{
@@ -89,6 +107,7 @@
                 }
             }
         }
+        [self.refreshControl endRefreshing];
     }];
 }
 
@@ -101,22 +120,29 @@
         PFUser *match = self.matches[indexPath.row];
         //shares matches Array and Match User to DetailsViewController
         detailsViewController.author = match;
+        detailsViewController.user = self.author;
         detailsViewController.matches = self.matches;
     }
 }
+
+-(NSURL*)convertURL:(NSString *) url{
+    NSString *stringWithoutNormal = [url stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+    //Removes the string "normal" from url to be able to use the URL
+    NSURL *urlNew = [NSURL URLWithString:stringWithoutNormal];
+    return urlNew;
+}
+
 - (void) receiveTestNotification:(NSNotification *) notification{
     //Function to see if the notification has been recieved.
     if ([[notification name] isEqualToString:@"TestNotification"])
         NSLog (@"Successfully received the test notification!");
 }
+
 - (IBAction)didTapLogout:(id)sender {
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
         AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
         appDelegate.window.rootViewController = loginViewController;
         [self performSegueWithIdentifier:@"MLoginSegue" sender:nil];
-    });
 }
 @end

@@ -11,7 +11,7 @@
         ConnectButton *connectButton = [self buttonWithTitle:@"CONNECT"];
         self.connectButton = connectButton;
 
-        self.backgroundColor = UIColor.whiteColor;
+        self.backgroundColor = UIColor.blackColor;
         self.translatesAutoresizingMaskIntoConstraints = YES;
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         label.text = @"Connect your Spotify account";

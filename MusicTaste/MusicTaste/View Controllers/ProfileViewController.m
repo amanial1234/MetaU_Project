@@ -7,6 +7,9 @@
 #import "LoginViewController.h"
 #import "dispatch/dispatch.h"
 #import "Parse/PFImageView.h"
+#import "UIColor+HTColor.h"
+#import "MessagingViewController.h"
+
 
 @interface ProfileViewController () 
 @property (weak, nonatomic) IBOutlet UILabel *screenName;
@@ -18,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *artist3View;
 @property (weak, nonatomic) IBOutlet UIImageView *artist4View;
 @property (weak, nonatomic) NSMutableArray *artists;
+@property (weak, nonatomic) IBOutlet UIButton *editButton;
+@property (weak, nonatomic) IBOutlet UIButton *matchesButton;
 
 - (IBAction)didTapLogout:(id)sender;
 
@@ -27,8 +32,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIColor *topColor = [UIColor ht_emeraldColor];
+    UIColor *bottomColor = [UIColor blackColor];
+        
+    CAGradientLayer *theViewGradient = [CAGradientLayer layer];
+    theViewGradient.colors = [NSArray arrayWithObjects: (id)topColor.CGColor, (id)bottomColor.CGColor, nil];
+    theViewGradient.frame = self.view.bounds;
+    theViewGradient.startPoint = CGPointZero;
+    theViewGradient.endPoint = CGPointMake(0, .3);
+    theViewGradient.colors = [NSArray arrayWithObjects: (id)topColor.CGColor, (id)bottomColor.CGColor, nil];
+    [self.view.layer addSublayer:theViewGradient];
+
+    [self.view.layer insertSublayer:theViewGradient atIndex:0];
+    
+    self.editButton.layer.cornerRadius = 12;
+    self.editButton.layer.borderWidth = 1;
+    self.editButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.matchesButton.layer.cornerRadius = 12;
+    self.matchesButton.layer.borderWidth = 1;
+    self.matchesButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    
     self.author  = [SpotifyAPIManager shared].author;
-    self.artists = [self.author valueForKey:@"images"];
+    self.artists = [self.author valueForKey:@"artistsimages"];
     self.screenName.text = [self.author valueForKey:@"username"];
     //if statement to check if there is a customiamge to replace the default image
     if ([self.author valueForKey:@"usercustomimage"] != nil){
@@ -36,9 +62,11 @@
         [self.profileView loadInBackground];
     }
     else{
-        NSString *URLString = [self.author valueForKey:@"userimage"];
-        NSURL *urlNew = [self convertURL: URLString];
-        [self.profileView setImageWithURL: urlNew];
+        if ([self.author valueForKey:@"userimage"] != nil){
+            NSString *URLString = [self.author valueForKey:@"userimage"];
+            NSURL *urlNew = [self convertURL: URLString];
+            [self.profileView setImageWithURL: urlNew];
+        }
     }
     //Gets top artists images using fucntion Convert Url
     [self.artist1View setImageWithURL:[self convertURL:[[self.artists objectAtIndex:0] objectAtIndex:1]]];
@@ -87,6 +115,11 @@
         EditViewController *editController = (EditViewController*)navigationController.topViewController;
         //passes the user
         editController.author = self.author;
+    }
+    if([[segue identifier] isEqualToString:@"messagingSegue"]) {
+        UINavigationController *navigationController = [segue destinationViewController];
+        MessagingViewController *messagingController = (EditViewController*)navigationController.topViewController;
+        messagingController.author = self.author;
     }
 }
 

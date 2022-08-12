@@ -4,20 +4,40 @@
 #import "UIImageView+AFNetworking.h"
 #import "MatchmakingViewController.h"
 #import "Parse/PFImageView.h"
+#import "UIColor+HTColor.h"
+#import "ProfileViewController.h"
 
 #define DRAG_AREA_PADDING 5
 
 @interface DetailsViewController ()
-
+@property (weak, nonatomic) NSMutableArray *artists;
 @end
 
 @implementation DetailsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIColor *topColor = [UIColor ht_lavenderDarkColor];
+    UIColor *bottomColor = [UIColor blackColor];
+        
+    CAGradientLayer *theViewGradient = [CAGradientLayer layer];
+    theViewGradient.colors = [NSArray arrayWithObjects: (id)topColor.CGColor, (id)bottomColor.CGColor, nil];
+    theViewGradient.frame = self.view.bounds;
+    theViewGradient.startPoint = CGPointZero;
+    theViewGradient.endPoint = CGPointMake(0, .1);
+    theViewGradient.colors = [NSArray arrayWithObjects: (id)topColor.CGColor, (id)bottomColor.CGColor, nil];
+    [self.view.layer insertSublayer:theViewGradient atIndex:0];
     //Set Username, Image, and Bio
-    self.screenName.text = [self.author valueForKey:@"username"];
+    
+    self.screenName.text = [[self.author valueForKey:@"username"] stringByAppendingString:@","];
     self.bio.text = [self.author valueForKey:@"bio"];
+    self.age.text = [self.author valueForKey:@"age"];
+    self.location.text = [self.author valueForKey:@"location"];
+    self.artists = [self.author valueForKey:@"artistsimages"];
+    [self.artistsImage1 setImageWithURL:[self convertURL:[[self.artists objectAtIndex:0] objectAtIndex:1]]];
+    [self.artistsImage2 setImageWithURL:[self convertURL:[[self.artists objectAtIndex:1] objectAtIndex:1]]];
+    [self.artistsImage3 setImageWithURL:[self convertURL:[[self.artists objectAtIndex:2] objectAtIndex:1]]];
+    [self.artistsImage4 setImageWithURL:[self convertURL:[[self.artists objectAtIndex:3] objectAtIndex:1]]];
     if ([self.author valueForKey:@"usercustomimage"] != nil){
         self.profileView.file = [self.author valueForKey:@"usercustomimage"];
         [self.profileView loadInBackground];
@@ -72,6 +92,12 @@
         if (self.isAcceptReached) {
             //Removes user from matches array and segues to MatchmakingViewController
             [self performSegueWithIdentifier:@"backSegue" sender:nil];
+            self.acceptedMatches = [[NSMutableArray alloc] initWithArray: self.user[@"acceptedMatches"]];
+            if (![self.acceptedMatches containsObject: self.author.objectId]){
+                [self.acceptedMatches addObject:self.author.objectId];
+                self.user[@"acceptedMatches"] = self.acceptedMatches;
+                [self.user saveEventually];
+            }
             [self.matches removeObject:self.author];
             if (self.completion) {
                 self.completion();
@@ -143,14 +169,14 @@
 
 - (void)updateAcceptView {
     //Updates the Accept view to a green if it is reached and changes text
-    UIColor *goalColor = self.isAcceptReached ? [UIColor greenColor] : [UIColor colorWithRed:174/255.0 green:0 blue:0 alpha:1];
+    UIColor *goalColor = self.isAcceptReached ? [UIColor greenColor] : [UIColor whiteColor];
     self.acceptView.layer.borderColor = goalColor.CGColor;
     self.acceptLabel.textColor = goalColor;
     self.acceptLabel.text = self.isAcceptReached ? @"Accepted!" : @"Accept!";
 }
 - (void)updateRejectView {
     //Updates the Reject view to a brighter red if it is reached and changes text
-    UIColor *goalColor = self.isRejectReached ? [UIColor redColor] : [UIColor colorWithRed:174/255.0 green:0 blue:0 alpha:1];
+    UIColor *goalColor = self.isRejectReached ? [UIColor redColor] : [UIColor whiteColor];
     self.rejectView.layer.borderColor = goalColor.CGColor;
     self.rejectLabel.textColor = goalColor;
     self.rejectLabel.text = self.isRejectReached ? @"Rejected!" : @"Reject!";
@@ -168,6 +194,13 @@
     }
 }
 #pragma mark - Getters
+
+-(NSURL*)convertURL:(NSString *) url{
+    NSString *stringWithoutNormal = [url stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+    //Removes the string "normal" from url to be able to use the URL
+    NSURL *urlNew = [NSURL URLWithString:stringWithoutNormal];
+    return urlNew;
+}
 
 - (BOOL)isAcceptReached {
     //Checks if Accept is reached
@@ -194,6 +227,10 @@
             if ([presentvc isKindOfClass:[MatchmakingViewController class]]) {
                 MatchmakingViewController *matchmakingviewcontroller = presentvc;
                 matchmakingviewcontroller.matches = self.matches;
+            }
+            if ([presentvc isKindOfClass:[ProfileViewController class]]) {
+                ProfileViewController *matchmakingviewcontroller = presentvc;
+                matchmakingviewcontroller.acceptedMatches = self.acceptedMatches;
             }
         }
     }
