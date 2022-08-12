@@ -18,19 +18,22 @@
     self.MatchTableView.delegate = self;
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.MatchTableView insertSubview:self.refreshControl atIndex:0];
+    [self.refreshControl addTarget:self action:@selector(getMatchesDictionary) forControlEvents:UIControlEventValueChanged];
+    [self.MatchTableView insertSubview:self.refreshControl atIndex:0];
     [self.MatchTableView addSubview:self.refreshControl];
     self.MatchTableView.rowHeight = 126;
     [self getMatchesDictionary];
     
-
     AcceptedMatchCell *cell = [_MatchTableView dequeueReusableCellWithIdentifier:@"AcceptedMatchCell"];
     UIColor *topColor = [UIColor ht_jayDarkColor];
     UIColor *bottomColor = [UIColor blackColor];
-        
+    
+    //Gets Gradient and sets it
     CAGradientLayer *theViewGradient = [CAGradientLayer layer];
     theViewGradient.colors = [NSArray arrayWithObjects: (id)topColor.CGColor, (id)bottomColor.CGColor, nil];
     theViewGradient.frame = self.view.bounds;
     theViewGradient.startPoint = CGPointZero;
+    //Decides where to located the Gradient
     theViewGradient.endPoint = CGPointMake(0, .1);
     theViewGradient.colors = [NSArray arrayWithObjects: (id)topColor.CGColor, (id)bottomColor.CGColor, nil];
     [self.view.layer insertSublayer:theViewGradient atIndex:0];
@@ -50,8 +53,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     AcceptedMatchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AcceptedMatchCell"];
     PFObject *match = self.acceptedMatches[indexPath.row];
-    //returns Genres, bio, name, and user's Artists
-    cell.matchName.text = [[match valueForKey:@"username"] stringByAppendingString:@","];
+    //Sets the userImage and User Name
+    cell.matchName.text = [match valueForKey:@"username"];
     if ([match valueForKey:@"userimage"] != nil){
         NSString *URLString = [match valueForKey:@"userimage"];
         NSString *stringWithoutNormal = [URLString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
@@ -69,7 +72,7 @@
 -(void)getMatchesDictionary{
     PFQuery *music = [PFQuery queryWithClassName:@"Music"];
     NSMutableArray *allMatchesArray = self.author[@"acceptedMatches"];
-    //query through each match
+    //query through each match to get the accepted matches
     [music findObjectsInBackgroundWithBlock:^(NSArray *users, NSError *error) {
         if (users != nil) {
             self.acceptedMatches = [[NSMutableArray alloc] init];
@@ -77,9 +80,9 @@
                 for (PFObject *user in users){
                     if ([matchid isEqual: user.objectId]){
                         [self.acceptedMatches addObject:user];
-                        [self.MatchTableView reloadData];
                     }
                 }
+                [self.MatchTableView reloadData];
             }
         }
         [self.refreshControl endRefreshing];
@@ -87,16 +90,14 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    //Segue to Details View Controller
+    //Segue to Chat View Controller
     if([[segue identifier] isEqualToString:@"chatSegue"]) {
         UITableViewCell *cell = sender;
         NSIndexPath *indexPath = [self.MatchTableView indexPathForCell:cell];
-        ChatViewController *detailsViewController = [segue destinationViewController];
+        ChatViewController *chatViewController = [segue destinationViewController];
         PFUser *match = self.acceptedMatches[indexPath.row];
-        //shares matches Array and Match User to DetailsViewController
-        detailsViewController.author = match;
-        detailsViewController.user = self.author;
-        
+        chatViewController.match = match;
+        chatViewController.user = self.author;
     }
 }
 

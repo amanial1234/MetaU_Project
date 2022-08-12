@@ -9,7 +9,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) NSMutableArray *messages;
 @property (nonatomic, strong) PFObject *conversation;
-@property (nonatomic, strong) PFUser *author;
+@property (nonatomic, strong) PFUser *match;
 @property (nonatomic, strong) PFUser *user;
 @property (weak, nonatomic) IBOutlet PFImageView *userImage;
 @property (weak, nonatomic) IBOutlet UILabel *userName;

@@ -59,6 +59,20 @@
 - (IBAction)signUp:(id)sender {
     //If the user signs up the password and username will be added to the database
     PFUser *newUser = [PFUser user];
+    if ([self.usernameField.text isEqual:@""] || [self.passwordField.text isEqual:@""]){
+        //If the username and password are empty return Invalid Login
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Invalid Sign Up"
+                                                                       message:@"Username and password required."
+                                                                       preferredStyle:(UIAlertControllerStyleAlert)];
+        //If the username and password are not empty say it is Okay
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * _Nonnull action) {
+                                                         }];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:^{
+        }];
+    }
     newUser.username = self.usernameField.text;
     newUser.password = self.passwordField.text;
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {

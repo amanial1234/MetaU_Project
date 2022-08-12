@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *bio;
 @property (weak, nonatomic) IBOutlet UILabel *age;
 @property (weak, nonatomic) IBOutlet PFImageView *profileView;
+@property (weak, nonatomic) IBOutlet UILabel *location;
 @property (weak, nonatomic) IBOutlet UIImageView *artist1View;
 @property (weak, nonatomic) IBOutlet UIImageView *artist2View;
 @property (weak, nonatomic) IBOutlet UIImageView *artist3View;
@@ -56,6 +57,7 @@
     self.author  = [SpotifyAPIManager shared].author;
     self.artists = [self.author valueForKey:@"artistsimages"];
     self.screenName.text = [self.author valueForKey:@"username"];
+    self.location.text = [self.author valueForKey:@"location"];
     //if statement to check if there is a customiamge to replace the default image
     if ([self.author valueForKey:@"usercustomimage"] != nil){
         self.profileView.file = [self.author valueForKey:@"usercustomimage"];
