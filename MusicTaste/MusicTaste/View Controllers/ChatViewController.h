@@ -1,5 +1,7 @@
 #import <UIKit/UIKit.h>
 #import "Parse/Parse.h"
+#import "Parse/PFImageView.h"
+#import "UIImageView+AFNetworking.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -9,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) PFObject *conversation;
 @property (nonatomic, strong) PFUser *author;
 @property (nonatomic, strong) PFUser *user;
+@property (weak, nonatomic) IBOutlet PFImageView *userImage;
+@property (weak, nonatomic) IBOutlet UILabel *userName;
 @end
 
 NS_ASSUME_NONNULL_END

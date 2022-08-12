@@ -70,8 +70,8 @@
 		455B2EE22878B85D00524595 /* ConnectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectView.m; sourceTree = "<group>"; };
 		455B2EE42878B89B00524595 /* ConnectButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectButton.h; sourceTree = "<group>"; };
 		455B2EE52878B89B00524595 /* ConnectButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectButton.m; sourceTree = "<group>"; };
-		455F5CC828A56194001AC217 /* MessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MessageCell.h; path = "View Controllers/MessageCell.h"; sourceTree = "<group>"; };
-		455F5CC928A56194001AC217 /* MessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MessageCell.m; path = "View Controllers/MessageCell.m"; sourceTree = "<group>"; };
+		455F5CC828A56194001AC217 /* MessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		455F5CC928A56194001AC217 /* MessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		4578A3E02876323800EB96A0 /* SpotifyAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpotifyAPIManager.h; sourceTree = "<group>"; };
 		4578A3E12876323800EB96A0 /* SpotifyAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpotifyAPIManager.m; sourceTree = "<group>"; };
 		4578A3E32876525A00EB96A0 /* MatchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchCell.h; sourceTree = "<group>"; };
@@ -184,6 +184,8 @@
 				4578A3E32876525A00EB96A0 /* MatchCell.h */,
 				45282AF028A4717C00C1FB34 /* AcceptedMatchCell.h */,
 				45282AF128A4717C00C1FB34 /* AcceptedMatchCell.m */,
+				455F5CC928A56194001AC217 /* MessageCell.m */,
+				455F5CC828A56194001AC217 /* MessageCell.h */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -222,8 +224,6 @@
 		459577862874F04300D566DE /* MusicTaste */ = {
 			isa = PBXGroup;
 			children = (
-				455F5CC828A56194001AC217 /* MessageCell.h */,
-				455F5CC928A56194001AC217 /* MessageCell.m */,
 				45FDD0552885E0C1003483A5 /* MatchingAlgorithm.m */,
 				45FDD0542885E0C1003483A5 /* MatchingAlgorithm.h */,
 				4578A3E62876526C00EB96A0 /* Cells */,

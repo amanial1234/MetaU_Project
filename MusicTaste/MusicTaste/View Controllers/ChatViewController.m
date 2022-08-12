@@ -3,6 +3,8 @@
 #import "MessageCell.h"
 #import "dispatch/dispatch.h"
 #import "Parse/Parse.h"
+#import "Parse/PFImageView.h"
+#import "UIImageView+AFNetworking.h"
 
 
 @interface ChatViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -25,6 +27,20 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.chatTableView insertSubview:self.refreshControl atIndex:0];
     [self.chatTableView addSubview:self.refreshControl];
+    
+    self.userName.text = [self.author valueForKey:@"username"];
+    if ([self.author valueForKey:@"usercustomimage"] != nil){
+        self.userImage.file = [self.user valueForKey:@"usercustomimage"];
+        [self.userImage loadInBackground];
+    }
+    else{
+        if ([self.author valueForKey:@"userimage"] != nil){
+            NSString *URLString = [self.author valueForKey:@"userimage"];
+            NSURL *urlNew = [self convertURL: URLString];
+            [self.userImage setImageWithURL: urlNew];
+        }
+    }
+    self.userImage.layer.cornerRadius = self.userImage.frame.size.height/2;
     
     self.sendButton.layer.cornerRadius = 12;
     self.sendButton.layer.masksToBounds = YES;
@@ -65,16 +81,37 @@
     NSMutableArray *messages = self.messages[indexPath.row];
     if ([[messages objectAtIndex: 1] isEqual: self.author.objectId]){
         cell.messageTextLabel.text = [@"    " stringByAppendingString:[messages objectAtIndex: 0]];
-        cell.senderNameLabel.text = [self.author valueForKey:@"username"];
+        cell.messageNameLabel.text = [self.author valueForKey:@"username"];
+        cell.messageTextLabel.layer.cornerRadius = 12;
+        cell.messageTextLabel.layer.masksToBounds = YES;
+        cell.messageTextLabel.layer.borderWidth = 1;
+        cell.messageTextLabel.layer.borderColor = [UIColor whiteColor].CGColor;
+        cell.sendMessageLabel.text = @"                 ";
+        cell.sendMessageLabel.text = [@"_____________________" stringByAppendingString:[messages objectAtIndex: 0]];
+        cell.sendMessageLabel.textColor = [UIColor clearColor];
+        cell.messageTextLabel.textColor = [UIColor whiteColor];
+        cell.sendMessageLabel.backgroundColor = [UIColor clearColor];
+        cell.sendMessageLabel.layer.borderColor = [UIColor clearColor].CGColor;
+        cell.sendMessageLabel.opaque = YES;
+        cell.messageNameLabel.text = [self.user valueForKey:@"username"];
+        cell.sendNameLabel.textColor = [UIColor clearColor];
     }
     if ([[messages objectAtIndex: 1] isEqual: self.user.objectId]){
-        cell.messageTextLabel.text = [@"    " stringByAppendingString:[messages objectAtIndex: 0]];
-        cell.senderNameLabel.text = [self.user valueForKey:@"username"];
+        cell.sendMessageLabel.layer.cornerRadius = 12;
+        cell.sendMessageLabel.layer.masksToBounds = YES;
+        cell.sendMessageLabel.layer.borderWidth = 1;
+        cell.sendMessageLabel.layer.borderColor = [UIColor whiteColor].CGColor;
+        cell.messageTextLabel.text = [@"_____________________" stringByAppendingString:[messages objectAtIndex: 0]];
+        
+        cell.messageTextLabel.textColor = [UIColor clearColor];
+        cell.messageTextLabel.backgroundColor = [UIColor clearColor];
+        cell.messageTextLabel.layer.borderColor = [UIColor clearColor].CGColor;
+        cell.messageTextLabel.opaque = YES;
+        cell.sendMessageLabel.text = [@"     " stringByAppendingString:[messages objectAtIndex: 0]];
+        cell.messageNameLabel.textColor = [UIColor clearColor];
+        cell.sendNameLabel.text = [self.user valueForKey:@"username"];
     }
-    cell.messageTextLabel.layer.cornerRadius = 12;
-    cell.messageTextLabel.layer.masksToBounds = YES;
-    cell.messageTextLabel.layer.borderWidth = 1;
-    cell.messageTextLabel.layer.borderColor = [UIColor whiteColor].CGColor;
+
 
     return cell;
 }
@@ -88,7 +125,7 @@
     self.conversation = conversation;
     [conversation saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
       if (succeeded) {
-          NSLog(@"Wooo");
+          NSLog(@"Success");
       } else {
           NSLog(@"%@", error.description);
       }
@@ -101,16 +138,25 @@
         if (results.count == 0){
             [self createConversation];
         }
-        for (PFObject *convo in results){
-            if ([[convo valueForKey:@"usersInConversation"] containsObject: self.author.objectId] && [[convo valueForKey:@"usersInConversation"] containsObject: self.user.objectId]){
-                self.conversation = convo;
-                self.messages = [self.conversation valueForKey:@"messages"];
-                [self.chatTableView reloadData];
-            }else{
-                [self createConversation];
+        NSMutableArray *users = @[self.author.objectId,self.user.objectId];
+        NSMutableArray *senders = @[self.user.objectId,self.author.objectId];
+        if ([[results valueForKey:@"usersInConversation"] containsObject: users] || [[results valueForKey:@"usersInConversation"] containsObject: senders]){
+            for (PFObject *convo in results){
+                if ([[convo valueForKey:@"usersInConversation"] containsObject: self.author.objectId] && [[convo valueForKey:@"usersInConversation"] containsObject: self.user.objectId]){
+                    self.conversation = convo;
+                    self.messages = [self.conversation valueForKey:@"messages"];
+                    [self.chatTableView reloadData];
+                }
             }
+        }else{
+            [self createConversation];
         }
     }];
 }
-
+-(NSURL*)convertURL:(NSString *) url{
+    NSString *stringWithoutNormal = [url stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+    //Removes the string "normal" from url to be able to use the URL
+    NSURL *urlNew = [NSURL URLWithString:stringWithoutNormal];
+    return urlNew;
+}
 @end

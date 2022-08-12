@@ -39,7 +39,8 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    
+    [self getMatchesDictionary];
+    [self.MatchTableView reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -56,7 +57,7 @@
         NSString *stringWithoutNormal = [URLString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
         NSURL *urlNew = [NSURL URLWithString:stringWithoutNormal];
         [cell.matchImage setImageWithURL: urlNew];
-        cell.matchImage.layer.cornerRadius = cell.matchImage.frame.size.height/10;
+        cell.matchImage.layer.cornerRadius = cell.matchImage.frame.size.height/2;
     }
     return cell;
 }
