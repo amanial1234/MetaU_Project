@@ -15,8 +15,6 @@
 		455B2EE32878B85D00524595 /* ConnectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 455B2EE22878B85D00524595 /* ConnectView.m */; };
 		455B2EE62878B89B00524595 /* ConnectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 455B2EE52878B89B00524595 /* ConnectButton.m */; };
 		455F5CCA28A56194001AC217 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 455F5CC928A56194001AC217 /* MessageCell.m */; };
-		455F5CCD28A561BE001AC217 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 455F5CCC28A561BE001AC217 /* Message.m */; };
-		455F5CD028A561E6001AC217 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 455F5CCF28A561E6001AC217 /* Conversation.m */; };
 		4578A3E22876323800EB96A0 /* SpotifyAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4578A3E12876323800EB96A0 /* SpotifyAPIManager.m */; };
 		4578A3E52876525A00EB96A0 /* MatchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4578A3E42876525A00EB96A0 /* MatchCell.m */; };
 		459577892874F04300D566DE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 459577882874F04300D566DE /* AppDelegate.m */; };
@@ -74,10 +72,6 @@
 		455B2EE52878B89B00524595 /* ConnectButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectButton.m; sourceTree = "<group>"; };
 		455F5CC828A56194001AC217 /* MessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MessageCell.h; path = "View Controllers/MessageCell.h"; sourceTree = "<group>"; };
 		455F5CC928A56194001AC217 /* MessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MessageCell.m; path = "View Controllers/MessageCell.m"; sourceTree = "<group>"; };
-		455F5CCB28A561BE001AC217 /* Message.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Message.h; path = "View Controllers/Message.h"; sourceTree = "<group>"; };
-		455F5CCC28A561BE001AC217 /* Message.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Message.m; path = "View Controllers/Message.m"; sourceTree = "<group>"; };
-		455F5CCE28A561E6001AC217 /* Conversation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
-		455F5CCF28A561E6001AC217 /* Conversation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
 		4578A3E02876323800EB96A0 /* SpotifyAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpotifyAPIManager.h; sourceTree = "<group>"; };
 		4578A3E12876323800EB96A0 /* SpotifyAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpotifyAPIManager.m; sourceTree = "<group>"; };
 		4578A3E32876525A00EB96A0 /* MatchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchCell.h; sourceTree = "<group>"; };
@@ -228,10 +222,6 @@
 		459577862874F04300D566DE /* MusicTaste */ = {
 			isa = PBXGroup;
 			children = (
-				455F5CCB28A561BE001AC217 /* Message.h */,
-				455F5CCC28A561BE001AC217 /* Message.m */,
-				455F5CCE28A561E6001AC217 /* Conversation.h */,
-				455F5CCF28A561E6001AC217 /* Conversation.m */,
 				455F5CC828A56194001AC217 /* MessageCell.h */,
 				455F5CC928A56194001AC217 /* MessageCell.m */,
 				45FDD0552885E0C1003483A5 /* MatchingAlgorithm.m */,
@@ -524,7 +514,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				455F5CD028A561E6001AC217 /* Conversation.m in Sources */,
 				455B2EE62878B89B00524595 /* ConnectButton.m in Sources */,
 				45282AF528A4722B00C1FB34 /* MessagingViewController.m in Sources */,
 				4578A3E22876323800EB96A0 /* SpotifyAPIManager.m in Sources */,
@@ -534,7 +523,6 @@
 				4595779A2874F04500D566DE /* main.m in Sources */,
 				4578A3E52876525A00EB96A0 /* MatchCell.m in Sources */,
 				4595778C2874F04300D566DE /* SceneDelegate.m in Sources */,
-				455F5CCD28A561BE001AC217 /* Message.m in Sources */,
 				45B3C4812898FC6000043E36 /* MatchmakingViewController.m in Sources */,
 				459577C428760DB800D566DE /* ProfileViewController.m in Sources */,
 				459577BE28760D8900D566DE /* ConnectViewController.m in Sources */,

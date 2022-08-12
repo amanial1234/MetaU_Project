@@ -3,6 +3,7 @@
 #import "AcceptedMatchCell.h"
 #import "UIColor+HTColor.h"
 #import "UIImageView+AFNetworking.h"
+#import "ChatViewController.h"
 
 @interface MessagingViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *MatchTableView;
@@ -35,6 +36,10 @@
     [self.view.layer insertSublayer:theViewGradient atIndex:0];
     
     [self.view bringSubviewToFront:cell.matchName];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -78,6 +83,20 @@
         }
         [self.refreshControl endRefreshing];
     }];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    //Segue to Details View Controller
+    if([[segue identifier] isEqualToString:@"chatSegue"]) {
+        UITableViewCell *cell = sender;
+        NSIndexPath *indexPath = [self.MatchTableView indexPathForCell:cell];
+        ChatViewController *detailsViewController = [segue destinationViewController];
+        PFUser *match = self.acceptedMatches[indexPath.row];
+        //shares matches Array and Match User to DetailsViewController
+        detailsViewController.author = match;
+        detailsViewController.user = self.author;
+        
+    }
 }
 
 @end
