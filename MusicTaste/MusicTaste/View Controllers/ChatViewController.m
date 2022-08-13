@@ -60,11 +60,11 @@
 }
 
 - (IBAction)sendbutton:(id)sender {
-    NSMutableArray *matchArray = [NSMutableArray array];
+    NSMutableArray *messageArray = [NSMutableArray array];
     NSMutableArray *convoArray = [[NSMutableArray alloc] initWithArray:[self.conversation valueForKey:@"messages"]];
-    [matchArray addObject:self.messageField.text];
-    [matchArray addObject:self.user.objectId];
-    [convoArray addObject: matchArray];
+    [messageArray addObject:self.messageField.text];
+    [messageArray addObject:self.user.objectId];
+    [convoArray addObject: messageArray];
     self.conversation[@"messages"] = convoArray;
     [self.conversation saveEventually];
     self.messages = convoArray;
@@ -138,14 +138,14 @@
 
 -(void)queryForConversation{
     PFQuery *query = [PFQuery queryWithClassName:@"Conversation"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
-        if (results.count == 0){
+    [query findObjectsInBackgroundWithBlock:^(NSArray *data, NSError *error) {
+        if (data.count == 0){
             [self createConversation];
         }
         NSMutableArray *users = @[self.match.objectId,self.user.objectId];
         NSMutableArray *senders = @[self.user.objectId,self.match.objectId];
-        if ([[results valueForKey:@"usersInConversation"] containsObject: users] || [[results valueForKey:@"usersInConversation"] containsObject: senders]){
-            for (PFObject *convo in results){
+        if ([[data valueForKey:@"usersInConversation"] containsObject: users] || [[data valueForKey:@"usersInConversation"] containsObject: senders]){
+            for (PFObject *convo in data){
                 if ([[convo valueForKey:@"usersInConversation"] containsObject: self.match.objectId] && [[convo valueForKey:@"usersInConversation"] containsObject: self.user.objectId]){
                     self.conversation = convo;
                     self.messages = [self.conversation valueForKey:@"messages"];
